@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { SidebarProps } from "./Sidebar"
 
 interface User {
       userID: number,
@@ -7,9 +8,8 @@ interface User {
       id: string
 }
 
-export default function LogIn(){
-
-    const [username, setUsername] = useState("")
+export default function LogIn({username, setUsername}: SidebarProps){
+    
     const [password, setPassword] = useState("")
     const [validated, setValidated] = useState(false)
 

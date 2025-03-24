@@ -5,11 +5,14 @@ import Sidebar from "./components/Sidebar";
 import Gallery from "./components/Gallery";
 
 function App() {
+
+  const [username, setUsername] = useState("")
+
   return (
     <>
       <Navbar />
       <div className="sidebar-gallery">
-        <Sidebar />
+        <Sidebar username={username} setUsername={setUsername}/>
         <Gallery />
       </div>
     </>

@@ -1,0 +1,74 @@
+{
+  "usernames": [
+    { "userID": 1, "username": "Abdul", "password": "password"},
+    { "userID": 2, "username": "Kurt", "password": "12345"},
+    { "userID": 3, "username": "Anita", "password": "abcde"}
+  ],
+  "notes": [
+    {
+        "noteID": 1,
+        "userID": 1,
+        "title": "Groceries",
+        "content": ["apples", "eggs", "pasta"],
+        "category": "shopping list",
+        "labels": [1],
+        "isChecklist": true
+    },
+    {
+        "noteID": 2,
+        "userID": 1,
+        "title": "Meeting Notes",
+        "content": "Discuss marketing strategy and finalise budget allocations.",
+        "category": "work",
+        "labels": [2, 3],
+        "isChecklist": false
+    },
+    {
+        "noteID": 3,
+        "userID": 2,
+        "title": "Home Repairs",
+        "content": ["Fix leaky tap", "Paint living room", "Replace broken tile"],
+        "category": "household",
+        "labels": [4],
+        "isChecklist": true
+    },
+    {
+        "noteID": 4,
+        "userID": 2,
+        "title": "Book Recommendations",
+        "content": "Check out 'Atomic Habits' and 'Deep Work' for productivity tips.",
+        "category": "personal growth",
+        "labels": [5, 6],
+        "isChecklist": false
+    },
+    {
+        "noteID": 5,
+        "userID": 3,
+        "title": "Weekend Plans",
+        "content": ["Hiking trip", "Try new sushi place", "Movie night"],
+        "category": "leisure",
+        "labels": [7],
+        "isChecklist": true
+    },
+    {
+        "noteID": 6,
+        "userID": 3,
+        "title": "Project Ideas",
+        "content": "Brainstorm app ideas for personal finance tracking.",
+        "category": "work",
+        "labels": [8],
+        "isChecklist": false
+    }
+  ],
+  "labels": 
+    [
+        { "labelID": 1, "userID": 1, "labelName": "Shopping" },
+        { "labelID": 2, "userID": 1, "labelName": "Work" },
+        { "labelID": 3, "userID": 1, "labelName": "Budgeting" },
+        { "labelID": 4, "userID": 2, "labelName": "Household" },
+        { "labelID": 5, "userID": 2, "labelName": "Books" },
+        { "labelID": 6, "userID": 2, "labelName": "Productivity" },
+        { "labelID": 7, "userID": 3, "labelName": "Leisure" },
+        { "labelID": 8, "userID": 3, "labelName": "Finance" }
+    ]
+}

@@ -1,74 +1,134 @@
 {
   "usernames": [
-    { "userID": 1, "username": "Abdul", "password": "password"},
-    { "userID": 2, "username": "Kurt", "password": "12345"},
-    { "userID": 3, "username": "Anita", "password": "abcde"}
+    {
+      "userID": 1,
+      "username": "Abdul",
+      "password": "password",
+      "id": "9fdd"
+    },
+    {
+      "userID": 2,
+      "username": "Kurt",
+      "password": "12345",
+      "id": "ca07"
+    },
+    {
+      "userID": 3,
+      "username": "Anita",
+      "password": "abcde",
+      "id": "4d29"
+    }
   ],
   "notes": [
     {
-        "noteID": 1,
-        "userID": 1,
-        "title": "Groceries",
-        "content": ["apples", "eggs", "pasta"],
-        "category": "shopping list",
-        "labels": [1],
-        "isChecklist": true
+      "noteID": 1,
+      "userID": 1,
+      "title": "Groceries",
+      "content": ["apples", "eggs", "pasta"],
+      "category": "shopping list",
+      "labels": [1],
+      "isChecklist": true,
+      "id": "255d"
     },
     {
-        "noteID": 2,
-        "userID": 1,
-        "title": "Meeting Notes",
-        "content": "Discuss marketing strategy and finalise budget allocations.",
-        "category": "work",
-        "labels": [2, 3],
-        "isChecklist": false
+      "noteID": 2,
+      "userID": 1,
+      "title": "Meeting Notes",
+      "content": "Discuss marketing strategy and finalise budget allocations.",
+      "category": "work",
+      "labels": [2, 3],
+      "isChecklist": false,
+      "id": "5ff1"
     },
     {
-        "noteID": 3,
-        "userID": 2,
-        "title": "Home Repairs",
-        "content": ["Fix leaky tap", "Paint living room", "Replace broken tile"],
-        "category": "household",
-        "labels": [4],
-        "isChecklist": true
+      "noteID": 3,
+      "userID": 2,
+      "title": "Home Repairs",
+      "content": ["Fix leaky tap", "Paint living room", "Replace broken tile"],
+      "category": "household",
+      "labels": [4],
+      "isChecklist": true,
+      "id": "6c7f"
     },
     {
-        "noteID": 4,
-        "userID": 2,
-        "title": "Book Recommendations",
-        "content": "Check out 'Atomic Habits' and 'Deep Work' for productivity tips.",
-        "category": "personal growth",
-        "labels": [5, 6],
-        "isChecklist": false
+      "noteID": 4,
+      "userID": 2,
+      "title": "Book Recommendations",
+      "content": "Check out 'Atomic Habits' and 'Deep Work' for productivity tips.",
+      "category": "personal growth",
+      "labels": [5, 6],
+      "isChecklist": false,
+      "id": "3d7c"
     },
     {
-        "noteID": 5,
-        "userID": 3,
-        "title": "Weekend Plans",
-        "content": ["Hiking trip", "Try new sushi place", "Movie night"],
-        "category": "leisure",
-        "labels": [7],
-        "isChecklist": true
+      "noteID": 5,
+      "userID": 3,
+      "title": "Weekend Plans",
+      "content": ["Hiking trip", "Try new sushi place", "Movie night"],
+      "category": "leisure",
+      "labels": [7],
+      "isChecklist": true,
+      "id": "2305"
     },
     {
-        "noteID": 6,
-        "userID": 3,
-        "title": "Project Ideas",
-        "content": "Brainstorm app ideas for personal finance tracking.",
-        "category": "work",
-        "labels": [8],
-        "isChecklist": false
+      "noteID": 6,
+      "userID": 3,
+      "title": "Project Ideas",
+      "content": "Brainstorm app ideas for personal finance tracking.",
+      "category": "work",
+      "labels": [8],
+      "isChecklist": false,
+      "id": "5a81"
     }
   ],
-  "labels": 
-    [
-        { "labelID": 1, "userID": 1, "labelName": "Shopping" },
-        { "labelID": 2, "userID": 1, "labelName": "Work" },
-        { "labelID": 3, "userID": 1, "labelName": "Budgeting" },
-        { "labelID": 4, "userID": 2, "labelName": "Household" },
-        { "labelID": 5, "userID": 2, "labelName": "Books" },
-        { "labelID": 6, "userID": 2, "labelName": "Productivity" },
-        { "labelID": 7, "userID": 3, "labelName": "Leisure" },
-        { "labelID": 8, "userID": 3, "labelName": "Finance" }
-    ]
+  "labels": [
+    {
+      "labelID": 1,
+      "userID": 1,
+      "labelName": "Shopping",
+      "id": "8b12"
+    },
+    {
+      "labelID": 2,
+      "userID": 1,
+      "labelName": "Work",
+      "id": "c2b6"
+    },
+    {
+      "labelID": 3,
+      "userID": 1,
+      "labelName": "Budgeting",
+      "id": "e041"
+    },
+    {
+      "labelID": 4,
+      "userID": 2,
+      "labelName": "Household",
+      "id": "530d"
+    },
+    {
+      "labelID": 5,
+      "userID": 2,
+      "labelName": "Books",
+      "id": "a81f"
+    },
+    {
+      "labelID": 6,
+      "userID": 2,
+      "labelName": "Productivity",
+      "id": "835f"
+    },
+    {
+      "labelID": 7,
+      "userID": 3,
+      "labelName": "Leisure",
+      "id": "7995"
+    },
+    {
+      "labelID": 8,
+      "userID": 3,
+      "labelName": "Finance",
+      "id": "9adb"
+    }
+  ]
 }

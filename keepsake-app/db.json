@@ -23,6 +23,12 @@
       "UserID": 1,
       "username": "Example",
       "password": "Example"
+    },
+    {
+      "id": "dc4a",
+      "UserID": 1,
+      "username": "newperson",
+      "password": "password"
     }
   ],
   "notes": [

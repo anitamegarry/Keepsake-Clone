@@ -1,5 +1,7 @@
-import React from "react";
 import "./Sidebar.css";
+import LogIn from "./LogIn";
+import Register from "./Register";
+
 
 export default function Sidebar() {
   return (
@@ -7,16 +9,10 @@ export default function Sidebar() {
       <button className="edit-labels-btn">Edit Labels</button>
       <button className="add-notes-btn">Add Note</button>
       <section className="login">
-        <h2>Login</h2>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <button>Login</button>
+        <LogIn />
       </section>
       <section className="register">
-        <h2>Register</h2>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <button>Register</button>
+        <Register />
       </section>
     </div>
   );

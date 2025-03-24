@@ -1,7 +1,8 @@
-import React from "react";
 import "./Sidebar.css";
 import { useState, useEffect } from "react";
 import { label } from "../App.tsx";
+import LogIn from "./LogIn";
+import Register from "./Register";        
 
 interface sidebarProps {
   labels: label[];
@@ -73,16 +74,10 @@ export default function Sidebar({ labels, setLabels }: sidebarProps) {
       )}
       <button className="add-notes-btn">Add Note</button>
       <section className="login">
-        <h2>Login</h2>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <button>Login</button>
+        <LogIn />
       </section>
       <section className="register">
-        <h2>Register</h2>
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <button>Register</button>
+        <Register />
       </section>
     </div>
   );

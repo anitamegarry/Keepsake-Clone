@@ -11,6 +11,7 @@ interface AddNoteProps {
 }
 
 function AddNote({noteID, userID, title, content, category, labels, isChecklist}: AddNoteProps) {
+    // Posts a new note to the notes API
 
     async function handleAddNoteClick() {
 
@@ -31,10 +32,5 @@ function AddNote({noteID, userID, title, content, category, labels, isChecklist}
         })
     })
     console.log(response)
-  }
-
-  return (
-    <div>
-    </div>
-  );
+  };
 };

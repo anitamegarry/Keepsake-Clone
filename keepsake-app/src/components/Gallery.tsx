@@ -1,9 +1,17 @@
 import React from "react";
 import "./Gallery.css";
 
-export default function Gallery() {
+
+interface GalleryProps {
+  isAddingNote: boolean;
+  setIsAddingNote: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Gallery({isAddingNote, setIsAddingNote}: GalleryProps) {
+
   return (
     <div className="gallery">
+      <div className="add-new-note"></div>
       <section className="note">
         <h1>Note title</h1>
         <section className="note-content">

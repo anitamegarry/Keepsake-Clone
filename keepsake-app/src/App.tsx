@@ -7,13 +7,14 @@ import Gallery from "./components/Gallery";
 function App() {
 
   const [username, setUsername] = useState("")
+  const [isAddingNote, setIsAddingNote] = useState(false)
 
   return (
     <>
       <Navbar />
       <div className="sidebar-gallery">
-        <Sidebar username={username} setUsername={setUsername}/>
-        <Gallery />
+        <Sidebar username={username} setUsername={setUsername} setIsAddingNote={setIsAddingNote}/>
+        <Gallery isAddingNote={isAddingNote} setIsAddingNote={setIsAddingNote}/>
       </div>
     </>
   );

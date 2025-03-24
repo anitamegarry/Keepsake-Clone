@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { SidebarProps } from "./Sidebar"
 
 interface User {
       userID: number,
@@ -7,8 +6,12 @@ interface User {
       password: string,
       id: string
 }
+interface LogInProps {
+    username: string;
+    setUsername: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export default function LogIn({username, setUsername}: SidebarProps){
+export default function LogIn({username, setUsername}: LogInProps){
     
     const [password, setPassword] = useState("")
     const [validated, setValidated] = useState(false)

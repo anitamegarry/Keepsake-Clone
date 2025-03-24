@@ -1,0 +1,11 @@
+.gallery {
+  display: flex;
+  width: 75%;
+  height: 100%;
+  border: 1px solid white;
+}
+
+.note {
+  border: 1px solid white;
+  margin: 10px;
+}

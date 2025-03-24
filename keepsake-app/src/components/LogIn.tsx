@@ -31,7 +31,7 @@ export default function LogIn(){
 
     return <div>
         <h3>Log In</h3>
-        {validated ? <p>Logged in</p> : <>
+        {validated ? <p>Welcome, {username}!</p> : <>
         <label htmlFor="username">Username</label>
         <input value={username} type="text" name="username" onChange={(e) => {setUsername(e.target.value)}}/>
         <label htmlFor="password">Password</label>

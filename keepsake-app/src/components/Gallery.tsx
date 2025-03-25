@@ -9,6 +9,16 @@ interface NoteObj {
     content: string | string[];
     labels: number[]  
 }
+import { CustomLabelInput } from "./CustomLabelInput";
+
+interface NoteObj {
+    id: string;
+    title: string;
+    isChecklist: boolean;
+    content: string | string[];
+    labels: number[]  
+}
+
 
 interface GalleryProps {
   username: string;
@@ -37,10 +47,14 @@ async function getUserID(username: string) {
   }
 }
 
-export default function Gallery({username, isAddingNote, setIsAddingNote}: GalleryProps) {
-
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
+export default function Gallery({
+  username,
+  isAddingNote,
+  setIsAddingNote,
+}: GalleryProps) {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [labels, setLabels] = useState<label[]>([]);
   const [notes, setNotes] = useState([]);
 
   async function getNotes(){

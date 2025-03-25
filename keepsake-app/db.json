@@ -30,7 +30,11 @@
     {
       "userID": "bd3d",
       "title": "Groceries",
-      "content": ["apples", "eggs", "pasta"],
+      "content": [
+        "apples",
+        "eggs",
+        "pasta"
+      ],
       "category": "shopping list",
       "isChecklist": true,
       "id": "0202"
@@ -46,7 +50,11 @@
     {
       "userID": "feb6",
       "title": "Home Repairs",
-      "content": ["Fix leaky tap", "Paint living room", "Replace broken tile"],
+      "content": [
+        "Fix leaky tap",
+        "Paint living room",
+        "Replace broken tile"
+      ],
       "category": "household",
       "isChecklist": true,
       "id": "51e4"
@@ -62,7 +70,11 @@
     {
       "userID": "feb6",
       "title": "Weekend Plans",
-      "content": ["Hiking trip", "Try new sushi place", "Movie night"],
+      "content": [
+        "Hiking trip",
+        "Try new sushi place",
+        "Movie night"
+      ],
       "category": "leisure",
       "isChecklist": true,
       "id": "b4f8"
@@ -78,55 +90,79 @@
   ],
   "labels": [
     {
-      "userIDs": ["dc4a"],
-      "noteIDs": ["0202"],
+      "userIDs": [
+        "dc4a"
+      ],
+      "noteIDs": [
+        "0202"
+      ],
       "labelName": "Shopping",
-
       "id": "8526"
     },
     {
-      "userIDs": ["feb6"],
-      "noteIDs": ["0202"],
+      "userIDs": [
+        "feb6"
+      ],
+      "noteIDs": [
+        "0202"
+      ],
       "labelName": "Work",
-
       "id": "89f4"
     },
     {
-      "userIDs": ["feb6"],
-      "noteIDs": [""],
+      "userIDs": [
+        "feb6"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Budgeting",
-
       "id": "bcff"
     },
     {
-      "userIDs": ["feb6"],
-      "noteIDs": [""],
+      "userIDs": [
+        "feb6"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Household",
-
       "id": "70d6"
     },
     {
-      "userIDs": ["dc4a"],
-      "noteIDs": [""],
+      "userIDs": [
+        "dc4a"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Books",
       "id": "e7c6"
     },
     {
-      "userIDs": ["dc4a", "feb6"],
-      "noteIDs": [""],
+      "userIDs": [
+        "dc4a",
+        "feb6"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Productivity",
-
       "id": "1da0"
     },
     {
       "userIDs": [],
-      "noteIDs": [""],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Leisure",
       "id": "6b14"
     },
     {
       "userIDs": [],
-      "noteIDs": [""],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Finance",
       "id": "9adb"
     }

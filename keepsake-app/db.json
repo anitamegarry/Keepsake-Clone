@@ -17,6 +17,18 @@
       "username": "Anita",
       "password": "abcde",
       "id": "ef3a"
+    },
+    {
+      "id": "bd3d",
+      "UserID": 1,
+      "username": "Example",
+      "password": "Example"
+    },
+    {
+      "id": "dc4a",
+      "UserID": 1,
+      "username": "newperson",
+      "password": "password"
     }
   ],
   "notes": [
@@ -66,7 +78,6 @@
       "noteID": 5,
       "userID": 3,
       "title": "Weekend Plans",
-
       "content": ["Hiking trip", "Try new sushi place", "Movie night"],
       "category": "leisure",
       "labels": [7],
@@ -79,76 +90,9 @@
       "title": "Project Ideas",
       "content": "Brainstorm app ideas for personal finance tracking.",
       "category": "work",
-
       "labels": [8],
       "isChecklist": false,
       "id": "8e94"
-    },
-    {
-      "id": "365b",
-      "userID": 3,
-      "title": "fdg",
-      "content": "broccoli",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "08a2",
-      "userID": 3,
-      "title": "jbb",
-      "content": "broccoli",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "c459",
-      "userID": 3,
-      "title": "jbb",
-      "content": "broccoli",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "72d2",
-      "userID": 3,
-      "title": " ",
-      "content": " ",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "b128",
-      "userID": 3,
-      "title": "eggs",
-      "content": "eggs",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "a209",
-      "userID": 3,
-      "title": "",
-      "content": "",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
     }
   ],
   "labels": [
@@ -203,7 +147,7 @@
       "labelID": 8,
       "userID": 3,
       "labelName": "Finance",
-      "id": "8bbe"
+      "id": "9adb"
     }
   ]
 }

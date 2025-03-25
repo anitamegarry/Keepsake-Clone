@@ -18,9 +18,10 @@ interface GalleryProps {
 }
 
 export interface label {
-  labelID: number;
+  id: string;
   userID: number;
   labelName: string;
+  noteID: string[];
 }
 
 async function getUserID(username: string) {
@@ -71,15 +72,57 @@ export default function Gallery({
         title,
         content,
         category: "note",
-        labels: labels,
         isChecklist: false,
       }),
     });
 
-    console.log(response);
+    const noteID = await getLatestNoteID(userID);
+
+    if (noteID !== null) {
+      for (const label of labels) {
+        const res = await fetch(`http://localhost:3000/labels/${label.id}`);
+        const existingLabel = await res.json();
+
+        const currentNoteIDs: string[] = existingLabel.noteID || [];
+
+        if (!currentNoteIDs.includes(noteID)) {
+          const updatedNoteIDs = [...currentNoteIDs, noteID];
+
+          await fetch(`http://localhost:3000/labels/${label.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              noteID: updatedNoteIDs,
+            }),
+          });
+        }
+      }
+    }
     setIsAddingNote(false);
     setTitle("");
     setContent("");
+  }
+
+  async function getLatestNoteID(userID: string): Promise<string | null> {
+    try {
+      if (!userID) return null;
+
+      const res = await fetch("http://localhost:3000/notes");
+      const notes = await res.json();
+
+      const userNotes = notes.filter((note: any) => note.userID === userID);
+
+      if (userNotes.length === 0) return null;
+
+      const latestNote = userNotes[userNotes.length - 1];
+
+      return latestNote.id;
+    } catch (err) {
+      console.error("Error fetching latest note:", err);
+      return null;
+    }
   }
 
   return (

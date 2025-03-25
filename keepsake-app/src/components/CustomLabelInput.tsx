@@ -18,6 +18,8 @@ export const CustomLabelInput = ({
 
   useEffect(() => {
     const fetchLabels = async () => {
+      const userID = await getUserID(username);
+      console.log("Fetching labels with userID:", userID);
       try {
         const res = await fetch(`http://localhost:3000/labels`);
         if (!res.ok) throw new Error("Failed to fetch labels");
@@ -43,14 +45,13 @@ export const CustomLabelInput = ({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             userID: userID,
-            // noteID:, how to get this?
             labelName: inputValue,
           }),
         });
 
         if (!res.ok) throw new Error("Failed to post label");
         const data = await res.json();
-        setLabels((prev: label[]) => [...prev, data]); //our post request only returns the new label not the list of labels
+        setLabels((prev: label[]) => [...prev, data]);
         setInputValue("");
       } catch (err) {
         console.error("Error posting label:", err);

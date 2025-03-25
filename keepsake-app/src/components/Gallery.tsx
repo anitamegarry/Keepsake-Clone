@@ -84,6 +84,11 @@ export default function Gallery({
         const existingLabel = await res.json();
 
         const currentNoteIDs: string[] = existingLabel.noteIDs || [];
+        let currentUserIDs: string[] = existingLabel.userIDs || []; //might need to adjust this
+
+        if (!currentUserIDs.includes(userID)) {
+          currentUserIDs = [...currentUserIDs, userID];
+        }
 
         if (!currentNoteIDs.includes(noteID)) {
           const updatedNoteIDs = [...currentNoteIDs, noteID];
@@ -95,6 +100,7 @@ export default function Gallery({
             },
             body: JSON.stringify({
               noteIDs: updatedNoteIDs,
+              userIDs: currentUserIDs,
             }),
           });
         }

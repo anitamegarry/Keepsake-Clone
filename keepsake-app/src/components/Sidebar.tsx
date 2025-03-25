@@ -14,7 +14,7 @@ export default function Sidebar({username, setUsername, setIsAddingNote}: Sideba
       <button className="edit-labels-btn">Edit Labels</button>
       <button className="add-notes-btn" onClick={() =>setIsAddingNote(true)}>Add Note</button>
       <section className="login">
-        <LogIn username={username} setUsername={setUsername}/>
+        <LogIn username={username} setUsername={setUsername} />
       </section>
       <section className="register">
         <Register />

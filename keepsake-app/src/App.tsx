@@ -4,12 +4,6 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Gallery from "./components/Gallery";
 
-export interface label {
-  labelID: number;
-  userID: number;
-  labelName: string;
-}
-
 function App() {
 
   const [username, setUsername] = useState("")

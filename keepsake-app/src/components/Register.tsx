@@ -14,7 +14,8 @@ export default function LogIn(){
         body: JSON.stringify({UserID: 1, username: username, password: password})
         })
         console.log(await response.json())
-
+        setUsername("")
+        setPassword("")
     }
 
     return <div>

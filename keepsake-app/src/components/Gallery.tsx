@@ -12,7 +12,6 @@ async function getUserID(username: string) {
   try {
     const response = await fetch("http://localhost:3000/usernames");
     const users = await response.json();
-    console.log(users)
 
     const user = users.find((user: { username: string }) => user.username === username);
     return user ? user.userID : null;

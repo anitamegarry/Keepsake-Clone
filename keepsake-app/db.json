@@ -73,7 +73,7 @@
   ],
   "labels": [
     {
-      "userIDs": ["dc4a"],
+      "userIDs": ["d5c5"],
       "noteIDs": ["0202"],
       "labelName": "Shopping",
       "id": "8526"
@@ -97,13 +97,13 @@
       "id": "70d6"
     },
     {
-      "userIDs": ["dc4a"],
+      "userIDs": ["d5c5"],
       "noteIDs": ["5fef"],
       "labelName": "Books",
       "id": "e7c6"
     },
     {
-      "userIDs": ["dc4a", "feb6"],
+      "userIDs": ["d5c5", "feb6"],
       "noteIDs": ["5fef"],
       "labelName": "Productivity",
       "id": "1da0"
@@ -119,6 +119,13 @@
       "noteIDs": [""],
       "labelName": "Finance",
       "id": "8bbe"
+    },
+    {
+      "id": "3bfb",
+      "userID": "d5c5",
+      "labelName": "Happy",
+      "noteIDs": ["a2fd"],
+      "userIDs": ["d5c5"]
     }
   ]
 }

@@ -23,15 +23,18 @@ export const CustomLabelInput = ({
       try {
         const res = await fetch(`http://localhost:3000/labels`);
         if (!res.ok) throw new Error("Failed to fetch labels");
-        const data = await res.json();
-        setLabels(data);
+        const data = await res.json(); //must filter so that only labels with label.userIDs.includes(userID)
+        const userLabels = data.filter((label: any) =>
+          label.userIDs?.includes(userID)
+        );
+        setLabels(userLabels);
       } catch (err) {
         console.error("Error fetching labels:", err);
       }
     };
 
     fetchLabels();
-  }, []);
+  }, [username]);
 
   const handleKeyDown = async (
     event: React.KeyboardEvent<HTMLInputElement>

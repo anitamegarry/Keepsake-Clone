@@ -14,7 +14,7 @@ function App() {
       <Navbar />
       <div className="sidebar-gallery">
         <Sidebar username={username} setUsername={setUsername} setIsAddingNote={setIsAddingNote}/>
-        <Gallery isAddingNote={isAddingNote} setIsAddingNote={setIsAddingNote}/>
+        <Gallery username={username} isAddingNote={isAddingNote} setIsAddingNote={setIsAddingNote}/>
       </div>
     </>
   );

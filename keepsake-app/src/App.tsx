@@ -12,6 +12,8 @@ export interface label {
 
 function App() {
   const [labels, setLabels] = useState<label[]>([]);
+  const [username, setUsername] = useState("")
+  const [isAddingNote, setIsAddingNote] = useState(false)
   useEffect(() => {
     const fetchLabels = async () => {
       try {
@@ -26,12 +28,15 @@ function App() {
 
     fetchLabels();
   }, []);
+
   return (
     <>
       <Navbar />
       <div className="sidebar-gallery">
-        <Sidebar labels={labels} setLabels={setLabels} />
-        <Gallery />
+
+        <Sidebar username={username} setUsername={setUsername} setIsAddingNote={setIsAddingNote} labels={labels} setLabels={setLabels}/>
+        <Gallery username={username} isAddingNote={isAddingNote} setIsAddingNote={setIsAddingNote}/>
+
       </div>
     </>
   );

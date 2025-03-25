@@ -6,10 +6,13 @@ interface User {
       password: string,
       id: string
 }
+interface LogInProps {
+    username: string;
+    setUsername: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export default function LogIn(){
-
-    const [username, setUsername] = useState("")
+export default function LogIn({username, setUsername}: LogInProps){
+    
     const [password, setPassword] = useState("")
     const [validated, setValidated] = useState(false)
 

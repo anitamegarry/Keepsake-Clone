@@ -5,12 +5,15 @@ import LogIn from "./LogIn";
 import Register from "./Register";
 import { CustomLabelInput } from "./customLabelInput.tsx";
 
-interface sidebarProps {
+interface SidebarProps {
+  username: string;
+  setUsername: React.Dispatch<React.SetStateAction<string>>;
+  setIsAddingNote: React.Dispatch<React.SetStateAction<boolean>>;
   labels: label[];
   setLabels: React.Dispatch<any>;
 }
 
-export default function Sidebar({ labels, setLabels }: sidebarProps) {
+export default function Sidebar({username, setUsername, setIsAddingNote, labels, setLabels }: SidebarProps) {
   const [isEditLabels, setIsEditLabels] = useState(false);
 
   function handleEditLabelsClick() {
@@ -37,9 +40,9 @@ export default function Sidebar({ labels, setLabels }: sidebarProps) {
           </select>
         </>
       )}
-      <button className="add-notes-btn">Add Note</button>
+      <button className="add-notes-btn" onClick={() =>setIsAddingNote(true)}>Add Note</button>
       <section className="login">
-        <LogIn />
+        <LogIn username={username} setUsername={setUsername}/>
       </section>
       <section className="register">
         <Register />

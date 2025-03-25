@@ -19,9 +19,9 @@ interface GalleryProps {
 
 export interface label {
   id: string;
-  userID: number;
+  userIDs: number[];
   labelName: string;
-  noteID: string[];
+  noteIDs: string[];
 }
 
 async function getUserID(username: string) {
@@ -32,7 +32,7 @@ async function getUserID(username: string) {
     const user = users.find(
       (user: { username: string }) => user.username === username
     );
-    return user ? user.userID : null;
+    return user ? user.id : null;
   } catch (error) {
     console.error("Error fetching users:", error);
     return null;
@@ -83,7 +83,7 @@ export default function Gallery({
         const res = await fetch(`http://localhost:3000/labels/${label.id}`);
         const existingLabel = await res.json();
 
-        const currentNoteIDs: string[] = existingLabel.noteID || [];
+        const currentNoteIDs: string[] = existingLabel.noteIDs || [];
 
         if (!currentNoteIDs.includes(noteID)) {
           const updatedNoteIDs = [...currentNoteIDs, noteID];
@@ -94,7 +94,7 @@ export default function Gallery({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              noteID: updatedNoteIDs,
+              noteIDs: updatedNoteIDs,
             }),
           });
         }

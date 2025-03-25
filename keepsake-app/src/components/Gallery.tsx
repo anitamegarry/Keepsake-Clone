@@ -48,6 +48,7 @@ export default function Gallery({
   const [content, setContent] = useState("");
   const [labels, setLabels] = useState<label[]>([]);
   const [notes, setNotes] = useState([]);
+  const [isAddingLabel, setIsAddingLabel] = useState(false);
 
   async function getNotes() {
     let response = await fetch(`http://localhost:3000/notes`);
@@ -131,6 +132,14 @@ export default function Gallery({
     }
   }
 
+  function handleAddLabelClick() {
+    setIsAddingLabel(true);
+  }
+
+  function handleConfirmLabelClick() {
+    setIsAddingLabel(false);
+  }
+
   return (
     <div className="gallery">
       <div className="add-new-note">
@@ -148,12 +157,25 @@ export default function Gallery({
               placeholder="Take a note..."
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
-
-            <CustomLabelInput
-              setNoteLabels={setLabels}
-              username={username}
-              getUserID={getUserID}
-            />
+            {isAddingLabel ? (
+              <>
+                <CustomLabelInput
+                  setNoteLabels={setLabels}
+                  username={username}
+                  getUserID={getUserID}
+                />{" "}
+                <button
+                  className="add-label-btn"
+                  onClick={handleConfirmLabelClick}
+                >
+                  Confirm labels
+                </button>
+              </>
+            ) : (
+              <button className="add-label-btn" onClick={handleAddLabelClick}>
+                Add labels
+              </button>
+            )}
 
             <button onClick={handleAddNoteClick}>Submit</button>
           </div>

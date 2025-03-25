@@ -5,12 +5,16 @@ import Sidebar from "./components/Sidebar";
 import Gallery from "./components/Gallery";
 
 function App() {
+
+  const [username, setUsername] = useState("")
+  const [isAddingNote, setIsAddingNote] = useState(false)
+
   return (
     <>
       <Navbar />
       <div className="sidebar-gallery">
-        <Sidebar />
-        <Gallery />
+        <Sidebar username={username} setUsername={setUsername} setIsAddingNote={setIsAddingNote}/>
+        <Gallery username={username} isAddingNote={isAddingNote} setIsAddingNote={setIsAddingNote}/>
       </div>
     </>
   );

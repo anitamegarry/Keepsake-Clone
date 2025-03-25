@@ -14,6 +14,7 @@ interface LogInProps {
 export default function LogIn({username, setUsername}: LogInProps){
     
     const [password, setPassword] = useState("")
+    const [validated, setValidated] = useState(false)
 
     async function getUsers(){
         let response = await fetch(`http://localhost:3000/usernames`)

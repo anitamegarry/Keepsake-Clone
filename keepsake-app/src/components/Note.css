@@ -1,0 +1,30 @@
+.check-container {
+  display: grid;
+  position: static;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  /* cursor: pointer; */
+  font-size: 20px;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+}
+
+.note-head {
+    display: flex;
+    box-sizing: border-box;
+    margin: 0px 10px 0px 10px;
+}
+
+.note-foot {
+    display: flex;
+    margin: 10px;
+    box-sizing: border-box;
+    height: 20%;
+    justify-content: space-between;
+}
+
+.buttons  {
+    margin: 0px 5px 0px 5px;
+    padding: 0px 5px 0px 5px;
+    display: flex;
+}

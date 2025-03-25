@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Gallery.css";
+import Note from "./Note";
 
+interface NoteObj {
+    id: string;
+    title: string;
+    isChecklist: boolean;
+    content: string | string[];
+    labels: number[]  
+}
 
 interface GalleryProps {
   username: string;
@@ -25,6 +33,17 @@ export default function Gallery({username, isAddingNote, setIsAddingNote}: Galle
 
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
+  const [notes, setNotes] = useState([]);
+
+  async function getNotes(){
+    let response = await fetch(`http://localhost:3000/notes`)
+    let data = await response.json()
+    setNotes(data)
+  }
+
+  useEffect(() => {
+    getNotes()
+  }, [])
 
   async function handleAddNoteClick() {
 
@@ -51,7 +70,6 @@ export default function Gallery({username, isAddingNote, setIsAddingNote}: Galle
       setContent("")
     };
 
-
   return (
     <div className="gallery">
       <div className="add-new-note">
@@ -61,18 +79,7 @@ export default function Gallery({username, isAddingNote, setIsAddingNote}: Galle
           <button onClick={handleAddNoteClick}>Submit</button>
         </div>}
       </div>
-      <section className="note">
-        <h1>Note title</h1>
-        <section className="note-content">
-          <p>This is the notes content</p>
-        </section>
-      </section>
-      <section className="note">
-        <h1>Note title</h1>
-        <section className="note-content">
-          <p>This is the notes content</p>
-        </section>
-      </section>
+        {notes.map((note: NoteObj) => {return  <Note id={note.id} title={note.title} isChecklist={note.isChecklist} content={note.content} labels={note.labels} /> })}
     </div>
   );
 }

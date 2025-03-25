@@ -1,6 +1,6 @@
 .gallery {
-  display: flex;
-  width: 75%;
+  display: grid;
+  width: 75vw;
   height: 100%;
   border: 1px solid white;
 }
@@ -9,4 +9,5 @@
   border: 1px solid white;
   margin: 10px;
   border-radius: 5px;
+  width: 30%;
 }

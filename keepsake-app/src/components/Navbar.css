@@ -7,3 +7,19 @@
   height: 150px;
   border: 1px solid white;
 }
+
+.app-title {
+  margin-left: 10px;
+}
+
+.logout-btn {
+  margin-right: 25px;
+}
+.title-logo {
+  display: flex;
+}
+
+img {
+  width: auto;
+  height: 150px;
+}

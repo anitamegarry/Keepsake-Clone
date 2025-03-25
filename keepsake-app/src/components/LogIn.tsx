@@ -1,45 +1,69 @@
-import { useState } from "react"
+import { useState } from "react";
+import "./Login.css";
 
 interface User {
-      userID: number,
-      username: string,
-      password: string,
-      id: string
+  userID: number;
+  username: string;
+  password: string;
+  id: string;
 }
 interface LogInProps {
-    username: string;
-    setUsername: React.Dispatch<React.SetStateAction<string>>;
+  username: string;
+  setUsername: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function LogIn({username, setUsername}: LogInProps){
-    
-    const [password, setPassword] = useState("")
-    const [validated, setValidated] = useState(false)
+export default function LogIn({ username, setUsername }: LogInProps) {
+  const [password, setPassword] = useState("");
+  const [validated, setValidated] = useState(false);
 
-    async function getUsers(){
-        let response = await fetch(`http://localhost:3000/usernames`)
-        let data: User[] = await response.json()
-        return data
-    }
+  async function getUsers() {
+    let response = await fetch(`http://localhost:3000/usernames`);
+    let data: User[] = await response.json();
+    return data;
+  }
 
-    async function handleSubmit(){
-        let users = await getUsers()
-        console.log(users)
-        let match = false;
-        users.map((user) => {
-            (username == user.username && password == user.password) ?  match = true : null
-        })
-        setValidated(match)
-    }
+  async function handleSubmit() {
+    let users = await getUsers();
+    console.log(users);
+    let match = false;
+    users.map((user) => {
+      username == user.username && password == user.password
+        ? (match = true)
+        : null;
+    });
+    setValidated(match);
+  }
 
-    return <div>
-        <h3>Log In</h3>
-        {validated ? <p>Welcome, {username}!</p> : 
+  return (
+    <>
+      <h3>Log In</h3>
+      {validated ? (
+        <p className="welcome-message">Welcome, {username}!</p>
+      ) : (
         <>
-            <input placeholder="Username" value={username} type="text" name="username" onChange={(e) => {setUsername(e.target.value)}}/>
-            <input placeholder="Password" value={password} type="password" name="password" onChange={(e) => {setPassword(e.target.value)}}/>
-            <button onClick={handleSubmit}>Log In</button>
+          <div className="input-fields">
+            <input
+              placeholder="Username"
+              value={username}
+              type="text"
+              name="username"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+            <input
+              placeholder="Password"
+              value={password}
+              type="password"
+              name="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
+          <button onClick={handleSubmit}>Log In</button>
         </>
-        }
-    </div>
+      )}
+    </>
+  );
 }

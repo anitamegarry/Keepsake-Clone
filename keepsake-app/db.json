@@ -1,28 +1,34 @@
 {
   "usernames": [
     {
-      "userID": 1,
       "username": "Abdul",
       "password": "password",
       "id": "feb6"
     },
     {
-      "userID": 2,
       "username": "Kurt",
       "password": "12345",
       "id": "d5c5"
     },
     {
-      "userID": 3,
       "username": "Anita",
       "password": "abcde",
       "id": "ef3a"
+    },
+    {
+      "id": "bd3d",
+      "username": "Example",
+      "password": "Example"
+    },
+    {
+      "id": "dc4a",
+      "username": "newperson",
+      "password": "password"
     }
   ],
   "notes": [
     {
-      "noteID": 1,
-      "userID": 1,
+      "userID": "bd3d",
       "title": "Groceries",
       "content": [
         "apples",
@@ -30,28 +36,19 @@
         "pasta"
       ],
       "category": "shopping list",
-      "labels": [
-        1
-      ],
       "isChecklist": true,
       "id": "0202"
     },
     {
-      "noteID": 2,
-      "userID": 1,
+      "userID": "bd3d",
       "title": "Meeting Notes",
       "content": "Discuss marketing strategy and finalise budget allocations.",
       "category": "work",
-      "labels": [
-        2,
-        3
-      ],
       "isChecklist": false,
       "id": "5fef"
     },
     {
-      "noteID": 3,
-      "userID": 2,
+      "userID": "feb6",
       "title": "Home Repairs",
       "content": [
         "Fix leaky tap",
@@ -59,28 +56,19 @@
         "Replace broken tile"
       ],
       "category": "household",
-      "labels": [
-        4
-      ],
       "isChecklist": true,
       "id": "51e4"
     },
     {
-      "noteID": 4,
-      "userID": 2,
+      "userID": "feb6",
       "title": "Book Recommendations",
       "content": "Check out 'Atomic Habits' and 'Deep Work' for productivity tips.",
       "category": "personal growth",
-      "labels": [
-        5,
-        6
-      ],
       "isChecklist": false,
       "id": "bf40"
     },
     {
-      "noteID": 5,
-      "userID": 3,
+      "userID": "feb6",
       "title": "Weekend Plans",
       "content": [
         "Hiking trip",
@@ -88,161 +76,95 @@
         "Movie night"
       ],
       "category": "leisure",
-      "labels": [
-        7
-      ],
       "isChecklist": true,
       "id": "b4f8"
     },
     {
-      "noteID": 6,
-      "userID": 3,
+      "userID": "feb6",
       "title": "Project Ideas",
       "content": "Brainstorm app ideas for personal finance tracking.",
       "category": "work",
-      "labels": [
-        8
-      ],
       "isChecklist": false,
       "id": "8e94"
-    },
-    {
-      "id": "365b",
-      "userID": 3,
-      "title": "fdg",
-      "content": "broccoli",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "08a2",
-      "userID": 3,
-      "title": "jbb",
-      "content": "broccoli",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "c459",
-      "userID": 3,
-      "title": "jbb",
-      "content": "broccoli",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "72d2",
-      "userID": 3,
-      "title": " ",
-      "content": " ",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "b128",
-      "userID": 3,
-      "title": "eggs",
-      "content": "eggs",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "a209",
-      "userID": 3,
-      "title": "",
-      "content": "",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "26f8",
-      "userID": 1,
-      "title": "djasjf",
-      "content": "fsdnfkjm",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "2d2f",
-      "userID": 1,
-      "title": "To do:",
-      "content": "Finish testing",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
     }
   ],
   "labels": [
     {
-      "labelID": 1,
-      "userID": 1,
+      "userIDs": [
+        "dc4a"
+      ],
+      "noteIDs": [
+        "0202"
+      ],
       "labelName": "Shopping",
       "id": "8526"
     },
     {
-      "labelID": 2,
-      "userID": 1,
+      "userIDs": [
+        "feb6"
+      ],
+      "noteIDs": [
+        "0202"
+      ],
       "labelName": "Work",
       "id": "89f4"
     },
     {
-      "labelID": 3,
-      "userID": 1,
+      "userIDs": [
+        "feb6"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Budgeting",
       "id": "bcff"
     },
     {
-      "labelID": 4,
-      "userID": 2,
+      "userIDs": [
+        "feb6"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Household",
       "id": "70d6"
     },
     {
-      "labelID": 5,
-      "userID": 2,
+      "userIDs": [
+        "dc4a"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Books",
       "id": "e7c6"
     },
     {
-      "labelID": 6,
-      "userID": 2,
+      "userIDs": [
+        "dc4a",
+        "feb6"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Productivity",
       "id": "1da0"
     },
     {
-      "labelID": 7,
-      "userID": 3,
+      "userIDs": [],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Leisure",
       "id": "6b14"
     },
     {
-      "labelID": 8,
-      "userID": 3,
+      "userIDs": [],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Finance",
-      "id": "8bbe"
+      "id": "9adb"
     }
   ]
 }

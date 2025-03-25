@@ -1,0 +1,33 @@
+.check-container {
+  display: grid;
+  position: static;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+  width: 80%;
+}
+
+.note-head {
+    display: flex;
+    box-sizing: border-box;
+    margin: 0px 10px 0px 10px;
+}
+
+.note-title h3{
+    margin-top: 0px;
+}
+
+.note-foot {
+    display: flex;
+    margin: 10px 5px 10px 5px;
+    box-sizing: border-box;
+    height: 20%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttons  {
+    display: flex;
+}

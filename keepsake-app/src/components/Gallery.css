@@ -1,12 +1,21 @@
 .gallery {
   display: flex;
-  width: 75%;
+  width: 75vw;
   height: 100%;
   border: 1px solid white;
+  flex-wrap: wrap;
 }
 
 .note {
+  display: flex;
+  flex-wrap: wrap;
   border: 1px solid white;
   margin: 10px;
   border-radius: 5px;
+  width: 30%;
+  justify-content: space-around;
+}
+
+.note * {
+  width: 100%;
 }

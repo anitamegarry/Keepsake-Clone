@@ -8,4 +8,5 @@
 .note {
   border: 1px solid white;
   margin: 10px;
+  border-radius: 5px;
 }

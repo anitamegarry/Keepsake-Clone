@@ -42,6 +42,12 @@
       "UserID": 1,
       "username": "Newuser",
       "password": "newuser"
+    },
+    {
+      "id": "0e5f",
+      "UserID": 1,
+      "username": "username",
+      "password": "password"
     }
   ],
   "notes": [

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./Login.css";
 
 interface User {
@@ -10,12 +9,20 @@ interface User {
 interface LogInProps {
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  validated: boolean;
+  setValidated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function LogIn({ username, setUsername }: LogInProps) {
-  const [password, setPassword] = useState("");
-  const [validated, setValidated] = useState(false);
-
+export default function LogIn({
+  username,
+  setUsername,
+  password,
+  setPassword,
+  validated,
+  setValidated,
+}: LogInProps) {
   async function getUsers() {
     let response = await fetch(`http://localhost:3000/usernames`);
     let data: User[] = await response.json();

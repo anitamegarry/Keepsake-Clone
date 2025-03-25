@@ -115,6 +115,15 @@
         1
       ],
       "isChecklist": false
+    },
+    {
+      "id": "0680",
+      "userID": null,
+      "title": "",
+      "content": "",
+      "category": "note",
+      "labels": [],
+      "isChecklist": false
     }
   ],
   "labels": [

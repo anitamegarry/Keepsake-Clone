@@ -56,9 +56,9 @@ export default function Gallery({username, isAddingNote, setIsAddingNote}: Galle
     <div className="gallery">
       <div className="add-new-note">
         {isAddingNote && <div className="add-new-note"> 
-          <textarea name="title" id="note" placeholder="Title" onChange={(e) => setTitle(e.target.value)}></textarea>
-          <textarea name="content" id="note" placeholder="Take a note..." onChange={(e) => setContent(e.target.value)}></textarea>
-          <button onClick={handleAddNoteClick}>Submit</button>
+          <textarea data-testid="title" name="title" id="note" placeholder="Title" onChange={(e) => setTitle(e.target.value)}></textarea>
+          <textarea data-testid="content" name="content" id="note" placeholder="Take a note..." onChange={(e) => setContent(e.target.value)}></textarea>
+          <button data-testid="submit" onClick={handleAddNoteClick}>Submit</button>
         </div>}
       </div>
       <section className="note">

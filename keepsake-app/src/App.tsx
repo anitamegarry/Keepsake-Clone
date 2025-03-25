@@ -11,16 +11,23 @@ export interface label {
 }
 
 function App() {
-
-  const [username, setUsername] = useState("")
-  const [isAddingNote, setIsAddingNote] = useState(false)
+  const [username, setUsername] = useState("");
+  const [isAddingNote, setIsAddingNote] = useState(false);
 
   return (
     <>
       <Navbar />
       <div className="sidebar-gallery">
-        <Sidebar username={username} setUsername={setUsername} setIsAddingNote={setIsAddingNote}/>
-        <Gallery username={username} isAddingNote={isAddingNote} setIsAddingNote={setIsAddingNote}/>
+        <Sidebar
+          username={username}
+          setUsername={setUsername}
+          setIsAddingNote={setIsAddingNote}
+        />
+        <Gallery
+          username={username}
+          isAddingNote={isAddingNote}
+          setIsAddingNote={setIsAddingNote}
+        />
       </div>
     </>
   );

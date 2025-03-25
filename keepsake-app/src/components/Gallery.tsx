@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Gallery.css";
 import Note from "./Note";
-
-interface NoteObj {
-    id: string;
-    title: string;
-    isChecklist: boolean;
-    content: string | string[];
-    labels: number[]  
-}
 import { CustomLabelInput } from "./CustomLabelInput";
 
 interface NoteObj {
@@ -18,7 +10,6 @@ interface NoteObj {
     content: string | string[];
     labels: number[]  
 }
-
 
 interface GalleryProps {
   username: string;
@@ -71,26 +62,25 @@ export default function Gallery({
     const userID = await getUserID(username);
 
     const response = await fetch(`http://localhost:3000/notes`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(
-          {
-            userID, 
-            title, 
-            content, 
-            "category": "note", 
-            "labels": [1], 
-            "isChecklist": false
-          })
-      })
-      console.log(response)
-      setIsAddingNote(false)
-      setTitle("")
-      setContent("")
-    };
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userID: userID,
+        title,
+        content,
+        category: "note",
+        labels: labels,
+        isChecklist: false,
+      }),
+    });
 
+    console.log(response);
+    setIsAddingNote(false);
+    setTitle("");
+    setContent("");
+  }
 
   return (
     <div className="gallery">

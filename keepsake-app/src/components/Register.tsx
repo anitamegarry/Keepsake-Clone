@@ -4,6 +4,7 @@ export default function LogIn(){
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [submitted, setSubmitted] = useState(false)
 
     async function handleSubmit(){
         let response = await fetch(`http://localhost:3000/usernames`, {
@@ -16,14 +17,18 @@ export default function LogIn(){
         console.log(await response.json())
         setUsername("")
         setPassword("")
+        setSubmitted(true)
     }
 
     return <div>
         <h3>Sign Up</h3>
-        <label htmlFor="username">Username</label>
-        <input value={username} type="text" name="username" onChange={(e) => {setUsername(e.target.value)}}/>
-        <label htmlFor="password">Password</label>
-        <input value={password} type="password" name="password" onChange={(e) => {setPassword(e.target.value)}}/>
+        <input placeholder="Username" value={username} type="text" name="username" onChange={(e) => {
+            setSubmitted(false)
+            setUsername(e.target.value)}}/>
+        <input placeholder="Password" value={password} type="password" name="password" onChange={(e) => {
+            setSubmitted(false)
+            setPassword(e.target.value)}}/>
         <button onClick={handleSubmit}>Register</button>
+        {submitted ? <p>Signed up!</p>: <></>}
     </div>
 }

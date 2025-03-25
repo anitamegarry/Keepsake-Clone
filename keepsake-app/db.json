@@ -36,6 +36,12 @@
       "UserID": 1,
       "username": "Random",
       "password": "Random"
+    },
+    {
+      "id": "93b7",
+      "UserID": 1,
+      "username": "Newuser",
+      "password": "newuser"
     }
   ],
   "notes": [

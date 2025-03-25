@@ -36,10 +36,8 @@ export default function LogIn({username, setUsername}: LogInProps){
         <h3>Log In</h3>
         {validated ? <p>Welcome, {username}!</p> : 
         <>
-            <label htmlFor="username">Username</label>
-            <input value={username} type="text" name="username" onChange={(e) => {setUsername(e.target.value)}}/>
-            <label htmlFor="password">Password</label>
-            <input value={password} type="password" name="password" onChange={(e) => {setPassword(e.target.value)}}/>
+            <input placeholder="Username" value={username} type="text" name="username" onChange={(e) => {setUsername(e.target.value)}}/>
+            <input placeholder="Password" value={password} type="password" name="password" onChange={(e) => {setPassword(e.target.value)}}/>
             <button onClick={handleSubmit}>Log In</button>
         </>
         }

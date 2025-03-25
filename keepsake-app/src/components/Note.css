@@ -3,10 +3,10 @@
   position: static;
   padding-left: 35px;
   margin-bottom: 12px;
-  /* cursor: pointer; */
-  font-size: 20px;
+  font-size: 16px;
   grid-template-columns: 1em auto;
   gap: 0.5em;
+  width: 80%;
 }
 
 .note-head {
@@ -15,16 +15,19 @@
     margin: 0px 10px 0px 10px;
 }
 
+.note-title h3{
+    margin-top: 0px;
+}
+
 .note-foot {
     display: flex;
-    margin: 10px;
+    margin: 10px 5px 10px 5px;
     box-sizing: border-box;
     height: 20%;
     justify-content: space-between;
+    align-items: center;
 }
 
 .buttons  {
-    margin: 0px 5px 0px 5px;
-    padding: 0px 5px 0px 5px;
     display: flex;
 }

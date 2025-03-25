@@ -22,7 +22,9 @@ export default function Note({ id, title, isChecklist, content }: NoteProp){
     const [labelList, setLabelList] = useState([])
 
     async function getLabels(){
-        const allLabels = await (await fetch("http://localhost:3000/labels")).json()
+        const response = await fetch("http://localhost:3000/labels")
+        const allLabels = await response.json()
+       
         const noteLabels = allLabels.filter((label: LabelObj) => label.noteIDs.includes(id))
         console.log(allLabels)
         setLabelList(noteLabels)

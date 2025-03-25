@@ -15,7 +15,6 @@ async function getUserID(username: string) {
     console.log(users)
 
     const user = users.find((user: { username: string }) => user.username === username);
-    console.log(typeof(user.userID))
     return user ? user.userID : null;
     } catch (error) {
     console.error("Error fetching users:", error);

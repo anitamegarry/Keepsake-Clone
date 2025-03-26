@@ -13,15 +13,26 @@ export interface label {
 function App() {
   const [username, setUsername] = useState("");
   const [isAddingNote, setIsAddingNote] = useState(false);
+  const [validated, setValidated] = useState(false);
+  const [password, setPassword] = useState("");
 
   return (
     <>
-      <Navbar />
+      <Navbar
+        validated={validated}
+        setValidated={setValidated}
+        setUsername={setUsername}
+        setPassword={setPassword}
+      />
       <div className="sidebar-gallery">
         <Sidebar
           username={username}
           setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
           setIsAddingNote={setIsAddingNote}
+          validated={validated}
+          setValidated={setValidated}
         />
         <Gallery
           username={username}

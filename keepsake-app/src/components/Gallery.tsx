@@ -71,7 +71,7 @@ export default function Gallery({
       }),
     });
 
-    const new_note = await response.json();
+    const newNote = await response.json();
     const noteID = new_note.id;
 
     if (noteID !== null) {

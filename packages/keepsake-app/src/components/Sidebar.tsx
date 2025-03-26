@@ -5,13 +5,21 @@ import Register from "./Register";
 interface SidebarProps {
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
   setIsAddingNote: React.Dispatch<React.SetStateAction<boolean>>;
+  validated: boolean;
+  setValidated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Sidebar({
   username,
   setUsername,
+  password,
+  setPassword,
   setIsAddingNote,
+  validated,
+  setValidated,
 }: SidebarProps) {
   return (
     <div className="sidebar">
@@ -19,7 +27,14 @@ export default function Sidebar({
         Add Note
       </button>
       <section className="login">
-        <LogIn username={username} setUsername={setUsername} />
+        <LogIn
+          validated={validated}
+          setValidated={setValidated}
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+        />
       </section>
       <section className="register">
         <Register />

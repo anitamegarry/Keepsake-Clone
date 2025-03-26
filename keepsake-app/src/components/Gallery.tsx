@@ -102,7 +102,7 @@ export default function Gallery({
         }
       }
     }
-    setNotes([...notes, new_note]);
+    setNotes([...notes, newNote]);
     setIsAddingNote(false);
     setTitle("");
     setContent("");

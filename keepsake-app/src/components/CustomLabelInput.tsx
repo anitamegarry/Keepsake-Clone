@@ -77,6 +77,7 @@ export const CustomLabelInput = ({
       <label>
         Custom label:
         <input
+          data-testid="custom-label-input"
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

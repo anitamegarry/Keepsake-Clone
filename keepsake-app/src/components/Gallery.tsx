@@ -149,7 +149,7 @@ export default function Gallery({
                 </button>
               </>
             ) : (
-              <button className="add-label-btn" onClick={handleAddLabelClick}>
+              <button data-testid="add-labels" className="add-label-btn" onClick={handleAddLabelClick}>
                 Add labels
               </button>
             )}

@@ -70,10 +70,9 @@ export default function Gallery({
         isChecklist: false,
       }),
     });
-    const new_note = await response.json();
-    setNotes([...notes, new_note]);
 
-    const noteID = new_note.id;
+    const newNote = await response.json();
+    const noteID = newNote.id;
 
     if (noteID !== null) {
       for (const label of labels) {
@@ -103,6 +102,7 @@ export default function Gallery({
         }
       }
     }
+    setNotes([...notes, newNote]);
     setIsAddingNote(false);
     setTitle("");
     setContent("");

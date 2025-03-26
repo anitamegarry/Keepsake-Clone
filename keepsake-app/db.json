@@ -81,86 +81,6 @@
       "category": "work",
       "isChecklist": false,
       "id": "8e94"
-    },
-    {
-      "id": "c567",
-      "userID": "d5c5",
-      "title": "Hello",
-      "content": "",
-      "category": "note",
-      "isChecklist": false
-    },
-    {
-      "id": "ac2b",
-      "userID": "d5c5",
-      "title": "check notes",
-      "content": "do they rerender",
-      "category": "note",
-      "isChecklist": false
-    },
-    {
-      "id": "fd14",
-      "userID": "d5c5",
-      "title": "rerender notes",
-      "content": "on creation note appears",
-      "category": "note",
-      "isChecklist": false
-    },
-    {
-      "id": "dd22",
-      "userID": "d5c5",
-      "title": "checking labels render",
-      "content": "123",
-      "category": "note",
-      "isChecklist": false
-    },
-    {
-      "id": "2a2f",
-      "userID": null,
-      "title": "hello",
-      "content": "adding note with labels",
-      "category": "note",
-      "isChecklist": false
-    },
-    {
-      "id": "d3e6",
-      "userID": "d5c5",
-      "title": "checking note render",
-      "content": "do they rerender",
-      "category": "note",
-      "isChecklist": false
-    },
-    {
-      "id": "79bc",
-      "userID": "d5c5",
-      "title": "123",
-      "content": "abcdef",
-      "category": "note",
-      "isChecklist": false
-    },
-    {
-      "id": "8603",
-      "userID": "d5c5",
-      "title": "hi",
-      "content": "is it working?",
-      "category": "note",
-      "isChecklist": false
-    },
-    {
-      "id": "9f4d",
-      "userID": "d5c5",
-      "title": "hi",
-      "content": "looking good",
-      "category": "note",
-      "isChecklist": false
-    },
-    {
-      "id": "3eb6",
-      "userID": "d5c5",
-      "title": "Labels appear",
-      "content": "should be seeing happy and birthday",
-      "category": "note",
-      "isChecklist": false
     }
   ],
   "labels": [
@@ -244,42 +164,6 @@
       ],
       "labelName": "Finance",
       "id": "8bbe"
-    },
-    {
-      "id": "3bfb",
-      "userID": "d5c5",
-      "labelName": "Happy",
-      "noteIDs": [
-        "a2fd",
-        "c567",
-        "dd22",
-        "3eb6"
-      ],
-      "userIDs": [
-        "d5c5"
-      ]
-    },
-    {
-      "id": "98fe",
-      "userID": "d5c5",
-      "labelName": "lol",
-      "noteIDs": [
-        "79bc",
-        "9f4d"
-      ],
-      "userIDs": [
-        "d5c5"
-      ]
-    },
-    {
-      "id": "dad6",
-      "userIDs": [
-        "d5c5"
-      ],
-      "labelName": "Birthday",
-      "noteIDs": [
-        "3eb6"
-      ]
     }
   ]
 }

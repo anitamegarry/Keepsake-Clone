@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Gallery.css";
 import Note from "./Note";
 import { CustomLabelInput } from "./CustomLabelInput";
+import { LabelObj } from "./Note.tsx";
 
 interface NoteObj {
   id: string;
@@ -15,13 +16,6 @@ interface GalleryProps {
   username: string;
   isAddingNote: boolean;
   setIsAddingNote: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export interface label {
-  id: string;
-  userIDs: number[];
-  labelName: string;
-  noteIDs: string[];
 }
 
 async function getUserID(username: string) {
@@ -46,8 +40,8 @@ export default function Gallery({
 }: GalleryProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [labels, setLabels] = useState<label[]>([]);
-  const [notes, setNotes] = useState([]);
+  const [labels, setLabels] = useState<LabelObj[]>([]);
+  const [notes, setNotes] = useState<NoteObj[]>([]);
   const [isAddingLabel, setIsAddingLabel] = useState(false);
 
   async function getNotes() {
@@ -76,8 +70,11 @@ export default function Gallery({
         isChecklist: false,
       }),
     });
+    const new_note = await response.json();
+    console.log(new_note);
+    setNotes([...notes, new_note]);
 
-    const noteID = await getLatestNoteID(userID);
+    const noteID = new_note.id;
 
     if (noteID !== null) {
       for (const label of labels) {
@@ -110,26 +107,6 @@ export default function Gallery({
     setIsAddingNote(false);
     setTitle("");
     setContent("");
-  }
-
-  async function getLatestNoteID(userID: string): Promise<string | null> {
-    try {
-      if (!userID) return null;
-
-      const res = await fetch("http://localhost:3000/notes");
-      const notes = await res.json();
-
-      const userNotes = notes.filter((note: any) => note.userID === userID);
-
-      if (userNotes.length === 0) return null;
-
-      const latestNote = userNotes[userNotes.length - 1];
-
-      return latestNote.id;
-    } catch (err) {
-      console.error("Error fetching latest note:", err);
-      return null;
-    }
   }
 
   function handleAddLabelClick() {

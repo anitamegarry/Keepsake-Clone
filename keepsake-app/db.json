@@ -89,6 +89,78 @@
       "content": "",
       "category": "note",
       "isChecklist": false
+    },
+    {
+      "id": "ac2b",
+      "userID": "d5c5",
+      "title": "check notes",
+      "content": "do they rerender",
+      "category": "note",
+      "isChecklist": false
+    },
+    {
+      "id": "fd14",
+      "userID": "d5c5",
+      "title": "rerender notes",
+      "content": "on creation note appears",
+      "category": "note",
+      "isChecklist": false
+    },
+    {
+      "id": "dd22",
+      "userID": "d5c5",
+      "title": "checking labels render",
+      "content": "123",
+      "category": "note",
+      "isChecklist": false
+    },
+    {
+      "id": "2a2f",
+      "userID": null,
+      "title": "hello",
+      "content": "adding note with labels",
+      "category": "note",
+      "isChecklist": false
+    },
+    {
+      "id": "d3e6",
+      "userID": "d5c5",
+      "title": "checking note render",
+      "content": "do they rerender",
+      "category": "note",
+      "isChecklist": false
+    },
+    {
+      "id": "79bc",
+      "userID": "d5c5",
+      "title": "123",
+      "content": "abcdef",
+      "category": "note",
+      "isChecklist": false
+    },
+    {
+      "id": "8603",
+      "userID": "d5c5",
+      "title": "hi",
+      "content": "is it working?",
+      "category": "note",
+      "isChecklist": false
+    },
+    {
+      "id": "9f4d",
+      "userID": "d5c5",
+      "title": "hi",
+      "content": "looking good",
+      "category": "note",
+      "isChecklist": false
+    },
+    {
+      "id": "3eb6",
+      "userID": "d5c5",
+      "title": "Labels appear",
+      "content": "should be seeing happy and birthday",
+      "category": "note",
+      "isChecklist": false
     }
   ],
   "labels": [
@@ -97,7 +169,8 @@
         "d5c5"
       ],
       "noteIDs": [
-        "0202"
+        "0202",
+        "fd14"
       ],
       "labelName": "Shopping",
       "id": "8526"
@@ -137,7 +210,8 @@
         "d5c5"
       ],
       "noteIDs": [
-        "5fef"
+        "5fef",
+        "dd22"
       ],
       "labelName": "Books",
       "id": "e7c6"
@@ -148,7 +222,9 @@
         "feb6"
       ],
       "noteIDs": [
-        "5fef"
+        "5fef",
+        "ac2b",
+        "fd14"
       ],
       "labelName": "Productivity",
       "id": "1da0"
@@ -175,10 +251,34 @@
       "labelName": "Happy",
       "noteIDs": [
         "a2fd",
-        "c567"
+        "c567",
+        "dd22",
+        "3eb6"
       ],
       "userIDs": [
         "d5c5"
+      ]
+    },
+    {
+      "id": "98fe",
+      "userID": "d5c5",
+      "labelName": "lol",
+      "noteIDs": [
+        "79bc",
+        "9f4d"
+      ],
+      "userIDs": [
+        "d5c5"
+      ]
+    },
+    {
+      "id": "dad6",
+      "userIDs": [
+        "d5c5"
+      ],
+      "labelName": "Birthday",
+      "noteIDs": [
+        "3eb6"
       ]
     }
   ]

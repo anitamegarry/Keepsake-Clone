@@ -74,9 +74,10 @@ export const CustomLabelInput = ({
 
   return (
     <>
-      <label>
+      <label htmlFor="custom-label-input">
         Custom label:
         <input
+          id="custom-label-input"
           data-testid="custom-label-input"
           type="text"
           value={inputValue}

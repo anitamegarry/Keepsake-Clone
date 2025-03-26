@@ -42,6 +42,7 @@ export default function LogIn({ username, setUsername }: LogInProps) {
         <>
           <label htmlFor="username">Username</label>
           <input
+            id="username" 
             data-testid="username" value={username}
             type="text"
             name="username"
@@ -51,6 +52,7 @@ export default function LogIn({ username, setUsername }: LogInProps) {
           />
           <label htmlFor="password">Password</label>
           <input
+            id="password"
             data-testid="password" value={password}
             type="password"
             name="password"

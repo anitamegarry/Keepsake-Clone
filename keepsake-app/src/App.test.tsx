@@ -8,14 +8,27 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
-// Functions for tests
+// TESTS
 
-function logInToAccount() {
+test('Initial page render displays the expected key text', () => {
+    render(<App />)
+    screen.getByText(/keepsake/i)
+    screen.getByText(/add note/i)
+    screen.getAllByText(/log in/i)
+    screen.getByText(/log out/i)
+    screen.getByText(/sign up/i)
+    screen.getByRole("img", {name: "logo"})
+})
+
+
+test('Entering in the correct username and password logs you in', async () => {
     // renders app and logs into a test account
     render(<App />)
-    const usernameInput = screen.getByTestId("username")
-    const passwordInput =  screen.getByTestId("password")
-    const loginButton = screen.getByTestId("login")
+
+    const usernameInput = screen.getByLabelText("Username")
+
+    const passwordInput =  screen.getByLabelText("Password")
+    const loginButton = screen.getByRole("button", {name: "Log In"})
 
     fireEvent.change(usernameInput, {
         target: {
@@ -29,13 +42,42 @@ function logInToAccount() {
     })
     fireEvent.click(loginButton)
 
-}
+    
+    await waitFor(() => {expect(screen.getByText(/welcome, test user 1!/i)).toBeInTheDocument();
+  });
+});
 
-function createNewNote() {
-    const addNote = screen.getByTestId("add-note")
-    fireEvent.click(addNote)
-    const title = screen.getByTestId("title")
-    const content = screen.getByTestId("content")
+
+
+test('Adding a note should result in the note being added to the board', async () => {
+    
+    // renders app and logs into a test account
+    render(<App />)
+
+    const usernameInput = screen.getByLabelText("Username")
+
+    const passwordInput =  screen.getByLabelText("Password")
+    const loginButton = screen.getByRole("button", {name: "Log In"})
+
+    fireEvent.change(usernameInput, {
+        target: {
+            value: "Test user 1"
+        }
+    })
+    fireEvent.change(passwordInput, {
+        target: {
+            value: "password"
+        }
+    })
+    fireEvent.click(loginButton)
+
+    // adding a new note
+
+    const addNoteButton = screen.getByRole("button", {name: "Add Note"})
+    fireEvent.click(addNoteButton)
+
+    const title = screen.getByPlaceholderText("Title")
+    const content = screen.getByPlaceholderText("Take a note...")
 
     fireEvent.change(title, {
         target: {
@@ -47,37 +89,8 @@ function createNewNote() {
             value: "Finish testing"
         }
     })
-}
 
-// TESTS
-
-test('Initial page render displays the expected key text', () => {
-    render(<App />)
-    screen.getByText(/keepsake/i)
-    screen.getByText(/add note/i)
-    screen.getAllByText(/log in/i)
-    screen.getByText(/log out/i)
-    screen.getByText(/sign up/i)
-    screen.getByRole("img", {name: "logo"})
-})
-
-test('Entering in the correct username and password logs you in', async () => {
-
-    logInToAccount()
-    
-    await waitFor(() => {expect(screen.getByText(/welcome, test user 1!/i)).toBeInTheDocument();
-  });
-});
-
-
-
-test('Adding a note should result in the note being added to the board', async () => {
-    
-    logInToAccount()
-
-    createNewNote()
-
-    const submitButton = screen.getByTestId("submit")
+    const submitButton = screen.getByRole("button", {name: "Submit"})
     fireEvent.click(submitButton)
 
     // checking that the new note has been rendered to the board
@@ -91,14 +104,51 @@ test('Adding a note should result in the note being added to the board', async (
 
 test('Custom label can be added to a note', async () => {
 
-    logInToAccount()
+    // renders app and logs into a test account
+    render(<App />)
 
-    createNewNote()
+    const usernameInput = screen.getByLabelText("Username")
 
-    const addLabelButton = screen.getByTestId("add-labels")
+    const passwordInput =  screen.getByLabelText("Password")
+    const loginButton = screen.getByRole("button", {name: "Log In"})
+
+    fireEvent.change(usernameInput, {
+        target: {
+            value: "Test user 1"
+        }
+    })
+    fireEvent.change(passwordInput, {
+        target: {
+            value: "password"
+        }
+    })
+    fireEvent.click(loginButton)
+
+    // adding note
+
+    const addNoteButton = screen.getByRole("button", {name: "Add Note"})
+    fireEvent.click(addNoteButton)
+
+    const title = screen.getByPlaceholderText("Title")
+    const content = screen.getByPlaceholderText("Take a note...")
+
+    fireEvent.change(title, {
+        target: {
+            value: "To do:"
+        }
+    })
+    fireEvent.change(content, {
+        target: {
+            value: "Finish testing"
+        }
+    })
+
+    // adding new custom label
+
+    const addLabelButton = screen.getByRole("button", {name: "Add labels"})
     fireEvent.click(addLabelButton)
 
-    const customLabel = screen.getByTestId("custom-label-input")
+    const customLabel = screen.getByLabelText("Custom label:")
     fireEvent.change(customLabel, {
         target: {
             value: "Test Label 123"

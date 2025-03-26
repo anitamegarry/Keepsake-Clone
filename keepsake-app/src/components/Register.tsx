@@ -23,15 +23,17 @@ export default function Register() {
   async function validateDetails() {
     const USERNAME_REGEX =
       /(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])/;
-
     const usernames = await getUsernames();
-    console.log(usernames);
 
     return USERNAME_REGEX.test(username) && !usernames.includes(username);
   }
 
   async function handleSubmit() {
     const isValid = await validateDetails();
+
+    if (username == "" || password == "") {
+      throw new Error("Please enter a username and password");
+    }
 
     if (!isValid) {
       throw new Error("Username invalid or already taken");

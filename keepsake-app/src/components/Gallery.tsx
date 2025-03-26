@@ -70,10 +70,8 @@ export default function Gallery({
         isChecklist: false,
       }),
     });
-    const new_note = await response.json();
-    console.log(new_note);
-    setNotes([...notes, new_note]);
 
+    const new_note = await response.json();
     const noteID = new_note.id;
 
     if (noteID !== null) {
@@ -82,7 +80,7 @@ export default function Gallery({
         const existingLabel = await res.json();
 
         const currentNoteIDs: string[] = existingLabel.noteIDs || [];
-        let currentUserIDs: string[] = existingLabel.userIDs || []; //might need to adjust this
+        let currentUserIDs: string[] = existingLabel.userIDs || [];
 
         if (!currentUserIDs.includes(userID)) {
           currentUserIDs = [...currentUserIDs, userID];
@@ -104,6 +102,7 @@ export default function Gallery({
         }
       }
     }
+    setNotes([...notes, new_note]);
     setIsAddingNote(false);
     setTitle("");
     setContent("");
@@ -123,13 +122,15 @@ export default function Gallery({
         {isAddingNote && (
           <div className="add-new-note">
             <textarea
-              data-testid="title" name="title"
+              data-testid="title"
+              name="title"
               id="note"
               placeholder="Title"
               onChange={(e) => setTitle(e.target.value)}
             ></textarea>
             <textarea
-              data-testid="content" name="content"
+              data-testid="content"
+              name="content"
               id="note"
               placeholder="Take a note..."
               onChange={(e) => setContent(e.target.value)}
@@ -154,7 +155,9 @@ export default function Gallery({
               </button>
             )}
 
-            <button data-testid="submit" onClick={handleAddNoteClick}>Submit</button>
+            <button data-testid="submit" onClick={handleAddNoteClick}>
+              Submit
+            </button>
           </div>
         )}
       </div>

@@ -9,7 +9,7 @@ interface NoteObj {
   title: string;
   isChecklist: boolean;
   content: string | string[];
-  labels: number[];
+  userID: string;
 }
 
 interface GalleryProps {
@@ -43,6 +43,16 @@ export default function Gallery({
   const [labels, setLabels] = useState<LabelObj[]>([]);
   const [notes, setNotes] = useState<NoteObj[]>([]);
   const [isAddingLabel, setIsAddingLabel] = useState(false);
+  const [userID, setUserID] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUserID = async () => {
+      const id = await getUserID(username);
+      setUserID(id);
+    };
+
+    fetchUserID();
+  }, [username]);
 
   async function getNotes() {
     let response = await fetch(`http://localhost:3000/notes`);
@@ -137,11 +147,7 @@ export default function Gallery({
             ></textarea>
             {isAddingLabel ? (
               <>
-                <CustomLabelInput
-                  setNoteLabels={setLabels}
-                  username={username}
-                  getUserID={getUserID}
-                />{" "}
+                <CustomLabelInput setNoteLabels={setLabels} userID={userID} />{" "}
                 <button
                   className="add-label-btn"
                   onClick={handleConfirmLabelClick}
@@ -168,7 +174,7 @@ export default function Gallery({
             title={note.title}
             isChecklist={note.isChecklist}
             content={note.content}
-            labels={note.labels}
+            userID={note.userID}
           />
         );
       })}

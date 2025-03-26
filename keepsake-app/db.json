@@ -24,60 +24,6 @@
       "id": "dc4a",
       "username": "newperson",
       "password": "password"
-    },
-    {
-      "id": "9217",
-      "UserID": 1,
-      "username": "Random",
-      "password": "Example"
-    },
-    {
-      "id": "a76d",
-      "UserID": 1,
-      "username": "Random",
-      "password": "Random"
-    },
-    {
-      "id": "93b7",
-      "UserID": 1,
-      "username": "Newuser",
-      "password": "newuser"
-    },
-    {
-      "id": "0e5f",
-      "UserID": 1,
-      "username": "username",
-      "password": "password"
-    },
-    {
-      "id": "b2cc",
-      "UserID": 1,
-      "username": "Example",
-      "password": "sadasdasd"
-    },
-    {
-      "id": "b664",
-      "UserID": 1,
-      "username": "Example",
-      "password": "adasd"
-    },
-    {
-      "id": "4974",
-      "UserID": 1,
-      "username": "Example",
-      "password": ""
-    },
-    {
-      "id": "036b",
-      "UserID": 1,
-      "username": "",
-      "password": ""
-    },
-    {
-      "id": "ada8",
-      "UserID": 1,
-      "username": "Example",
-      "password": ""
     }
   ],
   "notes": [

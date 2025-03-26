@@ -10,6 +10,7 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function getUsernames() {
     let response = await fetch(`http://localhost:3000/usernames`);
@@ -32,11 +33,13 @@ export default function Register() {
     const isValid = await validateDetails();
 
     if (username == "" || password == "") {
-      throw new Error("Please enter a username and password");
+      setErrorMessage("Please enter a username and password");
+      return;
     }
 
     if (!isValid) {
-      throw new Error("Username invalid or already taken");
+      setErrorMessage("Username invalid or already taken");
+      return;
     }
 
     let response = await fetch(`http://localhost:3000/usernames`, {
@@ -85,6 +88,7 @@ export default function Register() {
       </div>
       <button onClick={handleSubmit}>Register</button>
       {submitted ? <p>Signed up!</p> : <></>}
+      {errorMessage ? <p>{errorMessage}</p> : <></>}
     </div>
   );
 }

@@ -8,13 +8,6 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
-
-test('Entering an empty username returns an error message', () => {
-    render(<App />)
-
-
-});
-
 test('Entering in the correct username and password logs you in', async () => {
 
     render(<App />)
@@ -40,7 +33,7 @@ test('Entering in the correct username and password logs you in', async () => {
 
 
 
-test('Adding a note should result in the note being added to the board', () => {
+test('Adding a note should result in the note being added to the board', async () => {
     render(<App />)
 
     // logging into account
@@ -77,6 +70,13 @@ test('Adding a note should result in the note being added to the board', () => {
         }
     })
     fireEvent.click(submitButton)
+
+    // checking that the note has rendered to the board (not implemented functionality yet)
+    // to be continued...
+
+    await waitFor(() => {
+        expect(screen.getByText(/To do:/i)).toBeInTheDocument();
+        expect(screen.getByText(/Finish testing:/i)).toBeInTheDocument();})
 
 
 });

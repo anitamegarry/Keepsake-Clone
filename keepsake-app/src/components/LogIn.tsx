@@ -34,7 +34,6 @@ export default function LogIn({
 
   async function handleSubmit() {
     let users = await getUsers();
-    console.log(users);
     let match = false;
     users.map((user) => {
       username == user.username && password == user.password
@@ -81,7 +80,9 @@ export default function LogIn({
           ) : (
             <></>
           )}
-          <button data-testid="login" onClick={handleSubmit}>Log In</button>
+          <button data-testid="login" onClick={handleSubmit}>
+            Log In
+          </button>
         </>
       )}
     </>

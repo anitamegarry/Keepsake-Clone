@@ -24,14 +24,12 @@ export default function Register() {
   async function validateDetails() {
     const USERNAME_REGEX = /[a-zA-Z0-9._]+(?<![_.])/;
     const usernames = await getUsernames();
-    console.log(USERNAME_REGEX.test(username));
 
     return USERNAME_REGEX.test(username) && !usernames.includes(username);
   }
 
   async function handleSubmit() {
     const isValid = await validateDetails();
-    console.log(isValid);
     if (username == "" || password == "") {
       setErrorMessage("Please enter a username and password");
       return;

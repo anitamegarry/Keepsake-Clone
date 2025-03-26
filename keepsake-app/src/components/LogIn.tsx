@@ -14,6 +14,7 @@ interface LogInProps {
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   validated: boolean;
   setValidated: React.Dispatch<React.SetStateAction<boolean>>;
+  setLoginToggled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function LogIn({
@@ -23,6 +24,7 @@ export default function LogIn({
   setPassword,
   validated,
   setValidated,
+  setLoginToggled,
 }: LogInProps) {
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -83,6 +85,7 @@ export default function LogIn({
           <button data-testid="login" onClick={handleSubmit}>
             Log In
           </button>
+          <button onClick={() => setLoginToggled(false)}>Sign Up</button>
         </>
       )}
     </>

@@ -140,50 +140,6 @@
       "category": "work",
       "isChecklist": false,
       "id": "8e94"
-    },
-    {
-      "id": "1afb",
-      "userID": null,
-      "title": "New note",
-      "content": "Hello",
-      "category": "note",
-      "labels": [
-        1
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "0680",
-      "userID": null,
-      "title": "",
-      "content": "",
-      "category": "note",
-      "labels": [],
-      "isChecklist": false
-    },
-    {
-      "id": "5732",
-      "userID": null,
-      "title": "Example",
-      "content": "Example",
-      "category": "note",
-      "labels": [
-        {
-          "id": "b8b1",
-          "userID": null,
-          "labelName": "cusom"
-        }
-      ],
-      "isChecklist": false
-    },
-    {
-      "id": "6853",
-      "userID": null,
-      "title": "Example",
-      "content": "Example",
-      "category": "note",
-      "labels": [],
-      "isChecklist": false
     }
   ],
   "labels": [

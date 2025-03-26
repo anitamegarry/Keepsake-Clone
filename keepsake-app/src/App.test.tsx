@@ -85,12 +85,11 @@ test('Adding a note should result in the note being added to the board', async (
     })
     fireEvent.click(submitButton)
 
-    // checking that the note has rendered to the board (not implemented functionality yet)
-    // to be continued...
+    // checking that the new note has been rendered to the board
 
-    // await waitFor(() => {
-        // expect(screen.getByText(/To do:/i)).toBeInTheDocument();
-        // expect(screen.getByText(/Finish testing:/i)).toBeInTheDocument();})
+    await waitFor(() => {
+        expect(screen.getByText(/To do:/i)).toBeInTheDocument();
+        expect(screen.getByText(/Finish testing/i)).toBeInTheDocument();})
 
 
 });

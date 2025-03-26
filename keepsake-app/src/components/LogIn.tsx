@@ -42,7 +42,7 @@ export default function LogIn({ username, setUsername }: LogInProps) {
         <>
           <label htmlFor="username">Username</label>
           <input
-            value={username}
+            data-testid="username" value={username}
             type="text"
             name="username"
             onChange={(e) => {
@@ -51,14 +51,14 @@ export default function LogIn({ username, setUsername }: LogInProps) {
           />
           <label htmlFor="password">Password</label>
           <input
-            value={password}
+            data-testid="password" value={password}
             type="password"
             name="password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
-          <button onClick={handleSubmit}>Log In</button>
+          <button data-testid="login" onClick={handleSubmit}>Log In</button>
         </>
       )}
     </div>

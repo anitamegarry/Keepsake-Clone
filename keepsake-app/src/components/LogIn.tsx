@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Login.css";
 
 interface User {
@@ -23,6 +24,8 @@ export default function LogIn({
   validated,
   setValidated,
 }: LogInProps) {
+  const [errorMessage, setErrorMessage] = useState("");
+
   async function getUsers() {
     let response = await fetch(`http://localhost:3000/usernames`);
     let data: User[] = await response.json();
@@ -39,6 +42,9 @@ export default function LogIn({
         : null;
     });
     setValidated(match);
+    !match
+      ? setErrorMessage("Username or password incorrect")
+      : setErrorMessage("");
   }
 
   return (
@@ -68,6 +74,11 @@ export default function LogIn({
               }}
             />
           </div>
+          {errorMessage !== "" ? (
+            <p className="error-message">{errorMessage}</p>
+          ) : (
+            <></>
+          )}
           <button onClick={handleSubmit}>Log In</button>
         </>
       )}

@@ -48,7 +48,6 @@ export default function Register() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        UserID: 1,
         username: username,
         password: password,
       }),
@@ -89,7 +88,7 @@ export default function Register() {
       </div>
       <button onClick={handleSubmit}>Register</button>
       {submitted ? <p>Signed up!</p> : <></>}
-      {errorMessage ? <p>{errorMessage}</p> : <></>}
+      {errorMessage ? <p className="error-message">{errorMessage}</p> : <></>}
     </div>
   );
 }

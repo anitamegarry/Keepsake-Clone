@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { label } from "./Gallery.tsx";
+import { LabelObj } from "./Note.tsx";
 
 interface CustomLabelInputProps {
-  setNoteLabels: React.Dispatch<React.SetStateAction<label[]>>;
+  setNoteLabels: React.Dispatch<React.SetStateAction<LabelObj[]>>;
   username: string;
   getUserID(username: string): Promise<any>;
 }
@@ -14,43 +14,47 @@ export const CustomLabelInput = ({
   getUserID,
 }: CustomLabelInputProps) => {
   const [inputValue, setInputValue] = useState("");
-  const [labels, setLabels] = useState<label[]>([]);
+  const [labels, setLabels] = useState<LabelObj[]>([]);
 
   useEffect(() => {
     const fetchLabels = async () => {
+      const userID = await getUserID(username);
       try {
         const res = await fetch(`http://localhost:3000/labels`);
         if (!res.ok) throw new Error("Failed to fetch labels");
         const data = await res.json();
-        setLabels(data);
+        console.log(data);
+        const userLabels = data.filter((label: LabelObj) =>
+          label.userIDs.includes(userID)
+        );
+        setLabels(userLabels);
       } catch (err) {
         console.error("Error fetching labels:", err);
       }
     };
 
     fetchLabels();
-  }, []);
+  }, [username]);
 
   const handleKeyDown = async (
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
     const userID = await getUserID(username);
-    console.log("Posting label with userID:", userID);
     if (event.key === "Enter" && inputValue.trim() !== "") {
       try {
         const res = await fetch(`http://localhost:3000/labels`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            userID: userID,
-            // noteID:, how to get this?
+            userIDs: [userID],
             labelName: inputValue,
+            noteIDs: [],
           }),
         });
 
         if (!res.ok) throw new Error("Failed to post label");
         const data = await res.json();
-        setLabels((prev: label[]) => [...prev, data]); //our post request only returns the new label not the list of labels
+        setLabels((prev: LabelObj[]) => [...prev, data]);
         setInputValue("");
       } catch (err) {
         console.error("Error posting label:", err);

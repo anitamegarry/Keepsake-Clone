@@ -4,7 +4,8 @@
   "description": "Keepsake",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "concurrently \"npm start --workspace=server\"  \"npm run dev --workspace=keepsake-app\""
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "workspaces": [
     "packages/server",
     "packages/keepsake-app"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }

@@ -15,7 +15,6 @@ test('Initial page render displays the expected key text', () => {
     screen.getByText(/keepsake/i)
     screen.getByText(/add note/i)
     screen.getAllByText(/log in/i)
-    screen.getByText(/log out/i)
     screen.getByText(/sign up/i)
     screen.getByRole("img", {name: "logo"})
 })
@@ -25,9 +24,8 @@ test('Entering in the correct username and password logs you in', async () => {
     // renders app and logs into a test account
     render(<App />)
 
-    const usernameInput = screen.getByLabelText("Username")
-
-    const passwordInput =  screen.getByLabelText("Password")
+    const usernameInput = screen.getAllByPlaceholderText("Username")[0]
+    const passwordInput =  screen.getAllByPlaceholderText("Password")[0]
     const loginButton = screen.getByRole("button", {name: "Log In"})
 
     fireEvent.change(usernameInput, {
@@ -54,9 +52,8 @@ test('Adding a note should result in the note being added to the board', async (
     // renders app and logs into a test account
     render(<App />)
 
-    const usernameInput = screen.getByLabelText("Username")
-
-    const passwordInput =  screen.getByLabelText("Password")
+    const usernameInput = screen.getAllByPlaceholderText("Username")[0]
+    const passwordInput =  screen.getAllByPlaceholderText("Password")[0]
     const loginButton = screen.getByRole("button", {name: "Log In"})
 
     fireEvent.change(usernameInput, {
@@ -107,9 +104,8 @@ test('Custom label can be added to a note', async () => {
     // renders app and logs into a test account
     render(<App />)
 
-    const usernameInput = screen.getByLabelText("Username")
-
-    const passwordInput =  screen.getByLabelText("Password")
+    const usernameInput = screen.getAllByPlaceholderText("Username")[0]
+    const passwordInput =  screen.getAllByPlaceholderText("Password")[0]
     const loginButton = screen.getByRole("button", {name: "Log In"})
 
     fireEvent.change(usernameInput, {

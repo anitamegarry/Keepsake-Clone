@@ -71,8 +71,8 @@ export default function Gallery({
       }),
     });
 
-    const new_note = await response.json();
-    const noteID = new_note.id;
+    const newNote = await response.json();
+    const noteID = newNote.id;
 
     if (noteID !== null) {
       for (const label of labels) {
@@ -102,7 +102,7 @@ export default function Gallery({
         }
       }
     }
-    setNotes([...notes, new_note]);
+    setNotes([...notes, newNote]);
     setIsAddingNote(false);
     setTitle("");
     setContent("");

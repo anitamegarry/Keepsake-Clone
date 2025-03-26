@@ -42,3 +42,11 @@
 .add-new-note {
   display: grid;
 }
+
+.error-message {
+  color: brown;
+  background-color: rgb(46, 28, 28);
+  border: brown 1px solid;
+  margin: 10px;
+  border-radius: 10px;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Login.css";
 
 interface User {
   userID: number;
@@ -9,11 +10,21 @@ interface User {
 interface LogInProps {
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  validated: boolean;
+  setValidated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function LogIn({ username, setUsername }: LogInProps) {
-  const [password, setPassword] = useState("");
-  const [validated, setValidated] = useState(false);
+export default function LogIn({
+  username,
+  setUsername,
+  password,
+  setPassword,
+  validated,
+  setValidated,
+}: LogInProps) {
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function getUsers() {
     let response = await fetch(`http://localhost:3000/usernames`);
@@ -23,7 +34,6 @@ export default function LogIn({ username, setUsername }: LogInProps) {
 
   async function handleSubmit() {
     let users = await getUsers();
-    console.log(users);
     let match = false;
     users.map((user) => {
       username == user.username && password == user.password
@@ -31,36 +41,50 @@ export default function LogIn({ username, setUsername }: LogInProps) {
         : null;
     });
     setValidated(match);
+    !match
+      ? setErrorMessage("Username or password incorrect")
+      : setErrorMessage("");
   }
 
   return (
-    <div>
+    <>
       <h3>Log In</h3>
       {validated ? (
-        <p>Welcome, {username}!</p>
+        <p className="welcome-message">Welcome, {username}!</p>
       ) : (
         <>
-          <label htmlFor="username">Username</label>
-          <input
-            value={username}
-            type="text"
-            name="username"
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            value={password}
-            type="password"
-            name="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <button onClick={handleSubmit}>Log In</button>
+          <div className="input-fields">
+            <input
+              placeholder="Username"
+              value={username}
+              type="text"
+              name="username"
+              data-testid="username"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
+            <input
+              placeholder="Password"
+              value={password}
+              type="password"
+              name="password"
+              data-testid="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
+          {errorMessage !== "" ? (
+            <p className="error-message">{errorMessage}</p>
+          ) : (
+            <></>
+          )}
+          <button data-testid="login" onClick={handleSubmit}>
+            Log In
+          </button>
         </>
       )}
-    </div>
+    </>
   );
 }

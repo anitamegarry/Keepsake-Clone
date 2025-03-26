@@ -122,12 +122,14 @@ export default function Gallery({
         {isAddingNote && (
           <div className="add-new-note">
             <textarea
+              data-testid="title"
               name="title"
               id="note"
               placeholder="Title"
               onChange={(e) => setTitle(e.target.value)}
             ></textarea>
             <textarea
+              data-testid="content"
               name="content"
               id="note"
               placeholder="Take a note..."
@@ -153,7 +155,9 @@ export default function Gallery({
               </button>
             )}
 
-            <button onClick={handleAddNoteClick}>Submit</button>
+            <button data-testid="submit" onClick={handleAddNoteClick}>
+              Submit
+            </button>
           </div>
         )}
       </div>

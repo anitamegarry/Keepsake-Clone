@@ -1,0 +1,20 @@
+{
+  "name": "keepsake-clone",
+  "version": "1.0.0",
+  "description": "Keepsake",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anitamegarry/Keepsake-Clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anitamegarry/Keepsake-Clone/issues"
+  },
+  "homepage": "https://github.com/anitamegarry/Keepsake-Clone#readme"
+}

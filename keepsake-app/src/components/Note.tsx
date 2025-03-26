@@ -9,7 +9,7 @@ interface NoteProp {
   labels: number[];
 }
 
-interface LabelObj {
+export interface LabelObj {
   id: string;
   userIDs: string[];
   noteIDs: string[];

@@ -60,6 +60,7 @@ export default function LogIn({
               value={username}
               type="text"
               name="username"
+              data-testid="username"
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
@@ -69,6 +70,7 @@ export default function LogIn({
               value={password}
               type="password"
               name="password"
+              data-testid="password"
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -79,7 +81,7 @@ export default function LogIn({
           ) : (
             <></>
           )}
-          <button onClick={handleSubmit}>Log In</button>
+          <button data-testid="login" onClick={handleSubmit}>Log In</button>
         </>
       )}
     </>

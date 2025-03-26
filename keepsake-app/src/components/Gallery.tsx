@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Gallery.css";
 import Note from "./Note";
 import { CustomLabelInput } from "./CustomLabelInput";
+import { LabelObj } from "./Note.tsx";
 
 interface NoteObj {
   id: string;
@@ -17,12 +18,6 @@ interface GalleryProps {
   setIsAddingNote: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface label {
-  labelID: number;
-  userID: number;
-  labelName: string;
-}
-
 async function getUserID(username: string) {
   try {
     const response = await fetch("http://localhost:3000/usernames");
@@ -31,7 +26,7 @@ async function getUserID(username: string) {
     const user = users.find(
       (user: { username: string }) => user.username === username
     );
-    return user ? user.userID : null;
+    return user ? user.id : null;
   } catch (error) {
     console.error("Error fetching users:", error);
     return null;
@@ -45,8 +40,9 @@ export default function Gallery({
 }: GalleryProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [labels, setLabels] = useState<label[]>([]);
-  const [notes, setNotes] = useState([]);
+  const [labels, setLabels] = useState<LabelObj[]>([]);
+  const [notes, setNotes] = useState<NoteObj[]>([]);
+  const [isAddingLabel, setIsAddingLabel] = useState(false);
 
   async function getNotes() {
     let response = await fetch(`http://localhost:3000/notes`);
@@ -71,15 +67,54 @@ export default function Gallery({
         title,
         content,
         category: "note",
-        labels: labels,
         isChecklist: false,
       }),
     });
+    const new_note = await response.json();
+    console.log(new_note);
+    setNotes([...notes, new_note]);
 
-    console.log(response, "response for add note");
+    const noteID = new_note.id;
+
+    if (noteID !== null) {
+      for (const label of labels) {
+        const res = await fetch(`http://localhost:3000/labels/${label.id}`);
+        const existingLabel = await res.json();
+
+        const currentNoteIDs: string[] = existingLabel.noteIDs || [];
+        let currentUserIDs: string[] = existingLabel.userIDs || []; //might need to adjust this
+
+        if (!currentUserIDs.includes(userID)) {
+          currentUserIDs = [...currentUserIDs, userID];
+        }
+
+        if (!currentNoteIDs.includes(noteID)) {
+          const updatedNoteIDs = [...currentNoteIDs, noteID];
+
+          await fetch(`http://localhost:3000/labels/${label.id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              noteIDs: updatedNoteIDs,
+              userIDs: currentUserIDs,
+            }),
+          });
+        }
+      }
+    }
     setIsAddingNote(false);
     setTitle("");
     setContent("");
+  }
+
+  function handleAddLabelClick() {
+    setIsAddingLabel(true);
+  }
+
+  function handleConfirmLabelClick() {
+    setIsAddingLabel(false);
   }
 
   return (
@@ -88,25 +123,38 @@ export default function Gallery({
         {isAddingNote && (
           <div className="add-new-note">
             <textarea
-              name="title"
+              data-testid="title" name="title"
               id="note"
               placeholder="Title"
               onChange={(e) => setTitle(e.target.value)}
             ></textarea>
             <textarea
-              name="content"
+              data-testid="content" name="content"
               id="note"
               placeholder="Take a note..."
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
+            {isAddingLabel ? (
+              <>
+                <CustomLabelInput
+                  setNoteLabels={setLabels}
+                  username={username}
+                  getUserID={getUserID}
+                />{" "}
+                <button
+                  className="add-label-btn"
+                  onClick={handleConfirmLabelClick}
+                >
+                  Confirm labels
+                </button>
+              </>
+            ) : (
+              <button className="add-label-btn" onClick={handleAddLabelClick}>
+                Add labels
+              </button>
+            )}
 
-            <CustomLabelInput
-              setNoteLabels={setLabels}
-              username={username}
-              getUserID={getUserID}
-            />
-
-            <button onClick={handleAddNoteClick}>Submit</button>
+            <button data-testid="submit" onClick={handleAddNoteClick}>Submit</button>
           </div>
         )}
       </div>

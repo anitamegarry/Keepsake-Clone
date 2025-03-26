@@ -70,10 +70,8 @@ export default function Gallery({
         isChecklist: false,
       }),
     });
-    const new_note = await response.json();
-    console.log(new_note);
-    setNotes([...notes, new_note]);
 
+    const new_note = await response.json();
     const noteID = new_note.id;
 
     if (noteID !== null) {
@@ -104,6 +102,7 @@ export default function Gallery({
         }
       }
     }
+    setNotes([...notes, new_note]);
     setIsAddingNote(false);
     setTitle("");
     setContent("");

@@ -1,19 +1,40 @@
 import { useState } from "react";
 
+interface UserObj {
+  username: string;
+  password: string;
+  id: string;
+}
+
 export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  function validateDetails() {
-    const ALPHA_SPACE_REGEX =
+  async function getUsernames() {
+    let response = await fetch(`http://localhost:3000/usernames`);
+    let users = await response.json();
+    let usernames: string[] = users.map((user: UserObj) => {
+      return user.username;
+    });
+    return usernames;
+  }
+
+  async function validateDetails() {
+    const USERNAME_REGEX =
       /(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])/;
-    return ALPHA_SPACE_REGEX.test(username) && ALPHA_SPACE_REGEX.test(username);
+
+    const usernames = await getUsernames();
+    console.log(usernames);
+
+    return USERNAME_REGEX.test(username) && !usernames.includes(username);
   }
 
   async function handleSubmit() {
-    if (!validateDetails()) {
-      throw new Error("Username and password invalid");
+    const isValid = await validateDetails();
+
+    if (!isValid) {
+      throw new Error("Username invalid or already taken");
     }
 
     let response = await fetch(`http://localhost:3000/usernames`, {

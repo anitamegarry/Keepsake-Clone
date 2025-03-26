@@ -23,6 +23,8 @@ export default function Note({ id, title, isChecklist, content }: NoteProp) {
     const response = await fetch("http://localhost:3000/labels");
     const allLabels = await response.json();
 
+    // console.log(allLabels);
+
     const noteLabels = allLabels.filter((label: LabelObj) =>
       label.noteIDs.includes(id)
     );

@@ -76,7 +76,7 @@ export default function Gallery({
       }),
     });
 
-    console.log(response);
+    console.log(response, "response for add note");
     setIsAddingNote(false);
     setTitle("");
     setContent("");

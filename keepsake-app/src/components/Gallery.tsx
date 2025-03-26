@@ -72,7 +72,7 @@ export default function Gallery({
     });
 
     const newNote = await response.json();
-    const noteID = new_note.id;
+    const noteID = newNote.id;
 
     if (noteID !== null) {
       for (const label of labels) {

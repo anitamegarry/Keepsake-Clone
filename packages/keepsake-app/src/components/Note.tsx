@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Note.css";
 import { CustomLabelInput } from "./CustomLabelInput";
-import { NoteObj } from "./Gallery.tsx";
 
 interface NoteProp {
   id: string;
@@ -51,6 +50,7 @@ export default function Note({
   }
 
   async function handleFinishEditingClick() {
+    // Update the note content
     const response = await fetch(`http://localhost:3000/notes/${id}`, {
       method: "PATCH",
       headers: {
@@ -65,7 +65,51 @@ export default function Note({
     });
     const res = await response.json();
     console.log(res, "<---- note patch response");
-    getNotes();
+
+    const allLabelsRes = await fetch("http://localhost:3000/labels");
+    const allLabels: LabelObj[] = await allLabelsRes.json();
+
+    for (const label of allLabels) {
+      const isInCurrentLabelList = labelList.some((l) => l.id === label.id);
+      const isNoteLinked = label.noteIDs.includes(id);
+
+      if (isNoteLinked && !isInCurrentLabelList) {
+        const updatedNoteIDs = label.noteIDs.filter((noteId) => noteId !== id);
+        await fetch(`http://localhost:3000/labels/${label.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            noteIDs: updatedNoteIDs,
+          }),
+        });
+      }
+    }
+
+    for (const label of labelList) {
+      const existingLabelRes = await fetch(
+        `http://localhost:3000/labels/${label.id}`
+      );
+      const existingLabel = await existingLabelRes.json();
+      const currentNoteIDs: string[] = existingLabel.noteIDs || [];
+
+      if (!currentNoteIDs.includes(id)) {
+        const updatedNoteIDs = [...currentNoteIDs, id];
+        await fetch(`http://localhost:3000/labels/${label.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            noteIDs: updatedNoteIDs,
+          }),
+        });
+      }
+    }
+
+    await getLabels();
+    await getNotes();
     setIsEditing(false);
   }
 

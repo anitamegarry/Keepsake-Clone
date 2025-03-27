@@ -25,15 +25,10 @@ interface User {
 
 async function getUserID(username: string) {
   try {
-<<<<<<< HEAD
     const response = await fetch(`${import.meta.env.VITE_JSON_API_URL}/usernames`);
     const users = await response.json();
-=======
-    const response = await fetch("http://localhost:3000/usernames");
-    const users: User[] = await response.json();
->>>>>>> origin/main
 
-    const user = users.find((user) => user.username === username);
+    const user = users.find((user: User) => user.username === username);
     return user ? user.id : null;
   } catch (error) {
     console.error("Error fetching users:", error);

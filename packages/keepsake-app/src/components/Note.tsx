@@ -58,11 +58,7 @@ export default function Note({
   }
 
   async function handleFinishEditingClick() {
-<<<<<<< HEAD
     await fetch(`${import.meta.env.VITE_JSON_API_URL}/notes/${id}`, {
-=======
-    await fetch(`http://localhost:3000/notes/${id}`, {
->>>>>>> origin/main
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

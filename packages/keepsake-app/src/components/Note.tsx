@@ -76,14 +76,14 @@ export default function Note({
           <textarea
             name="title"
             id="note"
-            placeholder={newTitle}
+            defaultValue={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
           ></textarea>
           <textarea
             data-testid="content"
             name="content"
             id="note"
-            placeholder={newContent}
+            defaultValue={newContent}
             onChange={(e) => setNewContent(e.target.value)}
           ></textarea>
           <CustomLabelInput setNoteLabels={setLabelList} userID={userID} />{" "}

@@ -155,12 +155,14 @@ export default function Note({
     <section className="note">
       {isEditing ? (
         <div className="edit-note">
+          <p>Title:</p>
           <textarea
             name="title"
             id="note"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
           ></textarea>
+          <p>Content:</p>
           {!isChecklist ? (
             <>
               <textarea

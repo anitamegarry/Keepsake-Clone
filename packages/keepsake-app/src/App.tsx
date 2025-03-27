@@ -38,6 +38,7 @@ function App() {
           username={username}
           isAddingNote={isAddingNote}
           setIsAddingNote={setIsAddingNote}
+          validated={validated}
         />
       </div>
     </>

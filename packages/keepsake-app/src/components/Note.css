@@ -10,24 +10,34 @@
 }
 
 .note-head {
-    display: flex;
-    box-sizing: border-box;
-    margin: 0px 10px 0px 10px;
+  display: flex;
+  box-sizing: border-box;
+  margin: 0px 10px 0px 10px;
 }
 
-.note-title h3{
-    margin-top: 0px;
+.note-title h3 {
+  margin-top: 0px;
 }
 
 .note-foot {
-    display: flex;
-    margin: 10px 5px 10px 5px;
-    box-sizing: border-box;
-    height: 20%;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  margin: 10px 5px 10px 5px;
+  box-sizing: border-box;
+  height: 20%;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.buttons  {
-    display: flex;
+.buttons {
+  display: flex;
+}
+
+.edit-note {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid white;
+  margin: 10px;
+  border-radius: 5px;
+  width: 100%;
+  text-align: start;
 }

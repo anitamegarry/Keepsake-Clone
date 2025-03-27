@@ -14,6 +14,7 @@ export interface NoteObj {
 
 interface GalleryProps {
   username: string;
+  validated: boolean;
   isAddingNote: boolean;
   setIsAddingNote: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -38,6 +39,7 @@ async function getUserID(username: string) {
 
 export default function Gallery({
   username,
+  validated,
   isAddingNote,
   setIsAddingNote,
 }: GalleryProps) {
@@ -143,7 +145,7 @@ export default function Gallery({
 
   return (
     <div className="gallery">
-      {username === "" ? (
+      {!validated ? (
         <h1>Please sign in to view your notes</h1>
       ) : (
         <>

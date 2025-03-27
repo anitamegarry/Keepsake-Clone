@@ -4,12 +4,12 @@ import Note from "./Note";
 import { CustomLabelInput } from "./CustomLabelInput";
 import { LabelObj } from "./Note.tsx";
 
-interface NoteObj {
+export interface NoteObj {
   id: string;
   title: string;
   isChecklist: boolean;
   content: string | string[];
-  labels: number[];
+  userID: string;
 }
 
 interface GalleryProps {
@@ -46,6 +46,16 @@ export default function Gallery({
   const [isChecklist, setIsChecklist] = useState(false);
   const [checklistContent, setChecklistContent] = useState<string[]>([]);
   const [checkInput, setCheckInput] = useState("");
+  const [userID, setUserID] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUserID = async () => {
+      const id = await getUserID(username);
+      setUserID(id);
+    };
+
+    fetchUserID();
+  }, [username]);
 
   async function getNotes() {
     let response = await fetch(`http://localhost:3000/notes`);
@@ -86,7 +96,7 @@ export default function Gallery({
         const existingLabel = await res.json();
 
         const currentNoteIDs: string[] = existingLabel.noteIDs || [];
-        let currentUserIDs: string[] = existingLabel.userIDs || []; //might need to adjust this
+        let currentUserIDs: string[] = existingLabel.userIDs || [];
 
         if (!currentUserIDs.includes(userID)) {
           currentUserIDs = [...currentUserIDs, userID];
@@ -167,11 +177,7 @@ export default function Gallery({
 
           {isAddingLabel ? (
             <>
-              <CustomLabelInput
-                setNoteLabels={setLabels}
-                username={username}
-                getUserID={getUserID}
-              />{" "}
+              <CustomLabelInput setNoteLabels={setLabels} userID={userID} />{" "}
               <button
                 className="add-label-btn"
                 onClick={handleConfirmLabelClick}
@@ -208,7 +214,8 @@ export default function Gallery({
             title={note.title}
             isChecklist={note.isChecklist}
             content={note.content}
-            labels={note.labels}
+            userID={note.userID}
+            getNotes={getNotes}
           />
         );
       })}

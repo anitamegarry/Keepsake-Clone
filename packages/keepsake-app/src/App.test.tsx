@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { beforeAll, afterEach, afterAll } from 'vitest'
-import { server } from './mocks/node'
+import { server } from './mocks/node.ts'
 import App from './App'
  
 beforeAll(() => server.listen())

@@ -3,6 +3,7 @@ import "./Gallery.css";
 import Note from "./Note";
 import { CustomLabelInput } from "./CustomLabelInput";
 import { LabelObj } from "./Note.tsx";
+import { getSemanticLabel } from "./SemanticLabel.tsx";
 
 export interface NoteObj {
   id: string;
@@ -69,7 +70,7 @@ export default function Gallery({
 
   async function handleAddNoteClick() {
     const userID = await getUserID(username);
-
+    const semanticLabel = getSemanticLabel(title, content)
     let contentValue = isChecklist ? checklistContent : content;
     console.log(contentValue);
 
@@ -84,6 +85,7 @@ export default function Gallery({
         content: contentValue,
         category: "note",
         isChecklist: isChecklist,
+        semanticLabel
       }),
     });
 

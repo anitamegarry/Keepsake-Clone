@@ -1,6 +1,3 @@
-import { a } from "vitest/dist/chunks/suite.d.FvehnV49.js";
-
-
 const AIprompt = "Give a one word answer to categorise the following note: "
 const APIurl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.API_KEY}`
 console.log(APIurl)
@@ -28,7 +25,9 @@ async function postAIQuery(title: string, content: string) {
 }
 
 
-export function getSemanticLabel() {
-    const AIresponse = postAIQuery("groceries", "apples")
+export async function getSemanticLabel(title: string, content: string) {
+    const AIresponse = await postAIQuery(title, content)
     console.log(AIresponse)
+    const semanticLabel = AIresponse.candidates.content.parts.text
+    return semanticLabel
 }

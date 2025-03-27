@@ -2,15 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { LabelObj } from "./Note.tsx";
 
-interface CustomLabelInputProps {
+interface LabelProps {
   setNoteLabels: React.Dispatch<React.SetStateAction<LabelObj[]>>;
-  userID: string | null;
+  userID: string;
 }
 
-export const CustomLabelInput = ({
-  setNoteLabels,
-  userID,
-}: CustomLabelInputProps) => {
+export const CustomLabelInput = ({ setNoteLabels, userID }: LabelProps) => {
   const [inputValue, setInputValue] = useState("");
   const [labels, setLabels] = useState<LabelObj[]>([]);
 

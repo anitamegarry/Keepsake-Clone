@@ -22,7 +22,7 @@ export const CustomLabelInput = ({
         const data = await res.json();
         console.log(data);
         const userLabels = data.filter((label: LabelObj) =>
-          label.userIDs.includes(userID)
+          label.userIDs.includes(userID as string)
         );
         setLabels(userLabels);
       } catch (err) {

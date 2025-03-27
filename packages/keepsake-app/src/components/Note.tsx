@@ -56,7 +56,7 @@ export default function Note({
   }
 
   async function handleFinishEditingClick() {
-    const response = await fetch(`${import.meta.env.VITE_JSON_API_URL}/notes/${id}`, {
+    await fetch(`${import.meta.env.VITE_JSON_API_URL}/notes/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -146,7 +146,7 @@ export default function Note({
               />
               <button onClick={handleAddCheck}>Add</button>
               <ul>
-                {newContent.map((item: string) => (
+                {(Array.isArray(newContent) ? newContent : [newContent]).map((item: string) => (
                   <li>{item}</li>
                 ))}
               </ul>

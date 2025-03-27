@@ -30,6 +30,7 @@ export default function Note({
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newContent, setNewContent] = useState(content);
+  const [checkInput, setCheckInput] = useState("");
 
   async function getLabels() {
     const response = await fetch("http://localhost:3000/labels");
@@ -49,6 +50,11 @@ export default function Note({
     setIsEditing(true);
   }
 
+  function handleAddCheck() {
+    setNewContent([...newContent, checkInput]);
+    setCheckInput("");
+  }
+
   async function handleFinishEditingClick() {
     const response = await fetch(`http://localhost:3000/notes/${id}`, {
       method: "PATCH",
@@ -59,7 +65,7 @@ export default function Note({
         title: newTitle,
         content: newContent,
         category: "note",
-        isChecklist: false,
+        isChecklist: isChecklist,
       }),
     });
 
@@ -120,13 +126,32 @@ export default function Note({
             defaultValue={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
           ></textarea>
-          <textarea
-            data-testid="content"
-            name="content"
-            id="note"
-            defaultValue={newContent}
-            onChange={(e) => setNewContent(e.target.value)}
-          ></textarea>
+          {!isChecklist ? (
+            <>
+              <textarea
+                data-testid="content"
+                name="content"
+                id="note"
+                defaultValue={newContent}
+                onChange={(e) => setNewContent(e.target.value)}
+              ></textarea>
+            </>
+          ) : (
+            <>
+              <input
+                type="text"
+                placeholder="Enter your text"
+                value={checkInput}
+                onChange={(e) => setCheckInput(e.target.value)}
+              />
+              <button onClick={handleAddCheck}>Add</button>
+              <ul>
+                {newContent.map((item: string) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </>
+          )}
           <CustomLabelInput setNoteLabels={setLabelList} userID={userID} />{" "}
           <button className="finish-editing" onClick={handleFinishEditingClick}>
             Finish Editing

@@ -9,4 +9,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './vitest.setup.ts',
   },
+  build: {
+    target: "esnext"
+  },
 })

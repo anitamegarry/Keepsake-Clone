@@ -50,7 +50,6 @@ export default function Note({
   }
 
   async function handleFinishEditingClick() {
-    // Update the note content
     const response = await fetch(`http://localhost:3000/notes/${id}`, {
       method: "PATCH",
       headers: {
@@ -63,8 +62,6 @@ export default function Note({
         isChecklist: false,
       }),
     });
-    const res = await response.json();
-    console.log(res, "<---- note patch response");
 
     const allLabelsRes = await fetch("http://localhost:3000/labels");
     const allLabels: LabelObj[] = await allLabelsRes.json();

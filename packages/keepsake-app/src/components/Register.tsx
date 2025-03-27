@@ -13,7 +13,7 @@ export default function Register() {
   const [errorMessage, setErrorMessage] = useState("");
 
   async function getUsernames() {
-    let response = await fetch(`http://localhost:3000/usernames`);
+    let response = await fetch(`${import.meta.env.VITE_JSON_API_URL}/usernames`);
     let users = await response.json();
     let usernames: string[] = users.map((user: UserObj) => {
       return user.username;
@@ -40,7 +40,7 @@ export default function Register() {
       return;
     }
 
-    let response = await fetch(`http://localhost:3000/usernames`, {
+    let response = await fetch(`${import.meta.env.VITE_JSON_API_URL}/usernames`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

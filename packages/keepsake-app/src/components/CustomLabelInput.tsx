@@ -17,7 +17,7 @@ export const CustomLabelInput = ({
   useEffect(() => {
     const fetchLabels = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/labels`);
+        const res = await fetch(`${import.meta.env.VITE_JSON_API_URL}/labels`);
         if (!res.ok) throw new Error("Failed to fetch labels");
         const data = await res.json();
         console.log(data);
@@ -38,7 +38,7 @@ export const CustomLabelInput = ({
   ) => {
     if (event.key === "Enter" && inputValue.trim() !== "") {
       try {
-        const res = await fetch(`http://localhost:3000/labels`, {
+        const res = await fetch(`${import.meta.env.VITE_JSON_API_URL}/labels`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

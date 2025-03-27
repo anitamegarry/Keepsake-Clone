@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Gallery.css";
 import Note from "./Note";
-import { CustomLabelInput } from "./CustomLabelInput";
+import { CustomLabelInput } from "./Labels.tsx";
 import { LabelObj } from "./Note.tsx";
 import { getSemanticLabel } from "./SemanticLabel.tsx";
 
@@ -20,14 +20,17 @@ interface GalleryProps {
   setIsAddingNote: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+interface User {
+  id: string;
+  username: string;
+}
+
 async function getUserID(username: string) {
   try {
     const response = await fetch("http://localhost:3000/usernames");
-    const users = await response.json();
+    const users: User[] = await response.json();
 
-    const user = users.find(
-      (user: { username: string }) => user.username === username
-    );
+    const user = users.find((user) => user.username === username);
     return user ? user.id : null;
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -48,12 +51,14 @@ export default function Gallery({
   const [isChecklist, setIsChecklist] = useState(false);
   const [checklistContent, setChecklistContent] = useState<string[]>([]);
   const [checkInput, setCheckInput] = useState("");
-  const [userID, setUserID] = useState<string | null>(null);
+  const [userID, setUserID] = useState("");
 
   useEffect(() => {
     const fetchUserID = async () => {
       const id = await getUserID(username);
-      setUserID(id);
+      if (id) {
+        setUserID(id);
+      }
     };
 
     fetchUserID();
@@ -214,6 +219,7 @@ export default function Gallery({
         console.log(note.semanticLabel)
         return (
           <Note
+            key={note.id}
             id={note.id}
             title={note.title}
             isChecklist={note.isChecklist}

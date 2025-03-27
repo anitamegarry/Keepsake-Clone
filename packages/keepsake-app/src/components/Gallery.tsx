@@ -11,6 +11,7 @@ export interface NoteObj {
   isChecklist: boolean;
   content: string | string[];
   userID: string;
+  semanticLabel: string;
 }
 
 interface GalleryProps {
@@ -70,7 +71,7 @@ export default function Gallery({
 
   async function handleAddNoteClick() {
     const userID = await getUserID(username);
-    const semanticLabel = getSemanticLabel(title, content)
+    const semanticLabel = await getSemanticLabel(title, content)
     let contentValue = isChecklist ? checklistContent : content;
     console.log(contentValue);
 
@@ -210,6 +211,7 @@ export default function Gallery({
         </div>
       )}
       {notes.map((note: NoteObj) => {
+        console.log(note.semanticLabel)
         return (
           <Note
             id={note.id}
@@ -218,6 +220,7 @@ export default function Gallery({
             content={note.content}
             userID={note.userID}
             getNotes={getNotes}
+            semanticLabel={note.semanticLabel}
           />
         );
       })}

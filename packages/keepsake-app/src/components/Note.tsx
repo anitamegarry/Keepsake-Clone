@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Note.css";
-import { CustomLabelInput } from "./CustomLabelInput";
+import { CustomLabelInput } from "./Labels";
 
 export interface NoteProp {
   id: string;
@@ -51,12 +51,18 @@ export default function Note({
   }
 
   function handleAddCheck() {
-    setNewContent([...newContent, checkInput]);
+    if (Array.isArray(newContent)) {
+      setNewContent([...newContent, checkInput]);
+    }
     setCheckInput("");
   }
 
   async function handleFinishEditingClick() {
+<<<<<<< HEAD
     await fetch(`${import.meta.env.VITE_JSON_API_URL}/notes/${id}`, {
+=======
+    await fetch(`http://localhost:3000/notes/${id}`, {
+>>>>>>> origin/main
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -116,6 +122,39 @@ export default function Note({
     setIsEditing(false);
   }
 
+  async function handleDeleteClick() {
+    const response = await fetch(`http://localhost:3000/notes/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      console.log("Note deleted successfully");
+      await getNotes();
+    } else {
+      console.error("Failed to delete note");
+    }
+
+    const allLabelsRes = await fetch("http://localhost:3000/labels");
+    const allLabels: LabelObj[] = await allLabelsRes.json();
+
+    for (const label of allLabels) {
+      const isNoteLinked = label.noteIDs.includes(id);
+
+      if (isNoteLinked) {
+        const updatedNoteIDs = label.noteIDs.filter((noteId) => noteId !== id);
+        await fetch(`http://localhost:3000/labels/${label.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            noteIDs: updatedNoteIDs,
+          }),
+        });
+      }
+    }
+  }
+
   return (
     <section className="note">
       {isEditing ? (
@@ -123,7 +162,7 @@ export default function Note({
           <textarea
             name="title"
             id="note"
-            defaultValue={newTitle}
+            value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
           ></textarea>
           {!isChecklist ? (
@@ -132,11 +171,11 @@ export default function Note({
                 data-testid="content"
                 name="content"
                 id="note"
-                defaultValue={newContent}
+                value={newContent}
                 onChange={(e) => setNewContent(e.target.value)}
               ></textarea>
             </>
-          ) : (
+          ) : Array.isArray(newContent) ? (
             <>
               <input
                 type="text"
@@ -151,7 +190,7 @@ export default function Note({
                 ))}
               </ul>
             </>
-          )}
+          ) : null}
           <CustomLabelInput setNoteLabels={setLabelList} userID={userID} />{" "}
           <button className="finish-editing" onClick={handleFinishEditingClick}>
             Finish Editing
@@ -185,7 +224,7 @@ export default function Note({
           </div>
           <div className="note-foot">
             <div className="buttons">
-              <button>Delete</button>
+              <button onClick={handleDeleteClick}>Delete</button>
               <button onClick={handleEditClick}>Edit</button>
             </div>
             <p>semantic label</p>

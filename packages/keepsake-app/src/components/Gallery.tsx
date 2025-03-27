@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Gallery.css";
 import Note from "./Note";
-import { CustomLabelInput } from "./CustomLabelInput";
+import { CustomLabelInput } from "./Labels.tsx";
 import { LabelObj } from "./Note.tsx";
 
 export interface NoteObj {
@@ -18,14 +18,22 @@ interface GalleryProps {
   setIsAddingNote: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+interface User {
+  id: string;
+  username: string;
+}
+
 async function getUserID(username: string) {
   try {
+<<<<<<< HEAD
     const response = await fetch(`${import.meta.env.VITE_JSON_API_URL}/usernames`);
     const users = await response.json();
+=======
+    const response = await fetch("http://localhost:3000/usernames");
+    const users: User[] = await response.json();
+>>>>>>> origin/main
 
-    const user = users.find(
-      (user: { username: string }) => user.username === username
-    );
+    const user = users.find((user) => user.username === username);
     return user ? user.id : null;
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -46,12 +54,14 @@ export default function Gallery({
   const [isChecklist, setIsChecklist] = useState(false);
   const [checklistContent, setChecklistContent] = useState<string[]>([]);
   const [checkInput, setCheckInput] = useState("");
-  const [userID, setUserID] = useState<string | null>(null);
+  const [userID, setUserID] = useState("");
 
   useEffect(() => {
     const fetchUserID = async () => {
       const id = await getUserID(username);
-      setUserID(id);
+      if (id) {
+        setUserID(id);
+      }
     };
 
     fetchUserID();
@@ -68,8 +78,6 @@ export default function Gallery({
   }, []);
 
   async function handleAddNoteClick() {
-    const userID = await getUserID(username);
-
     let contentValue = isChecklist ? checklistContent : content;
     console.log(contentValue);
 
@@ -210,6 +218,7 @@ export default function Gallery({
       {notes.map((note: NoteObj) => {
         return (
           <Note
+            key={note.id}
             id={note.id}
             title={note.title}
             isChecklist={note.isChecklist}

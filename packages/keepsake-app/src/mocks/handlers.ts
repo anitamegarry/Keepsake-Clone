@@ -1,8 +1,4 @@
 import { http, HttpResponse } from 'msw'
- 
-const allNotes = new Map()
-const allUsernames = new Map()
-const allLabels = new Map()
 
 export const handlers = [
 
@@ -171,29 +167,40 @@ export const handlers = [
 
   http.post('http://localhost:3000/notes', async ({ request }) => {
 
-    const newNote = await request.json()
- 
-    allNotes.set(newNote.id, newNote)
+    const data = (await request.json()) ?? {}
+    if (typeof(data) === "object") {
+      const newNote = {...data} 
 
-    return HttpResponse.json(newNote, { status: 201 })
+    if (!newNote) {return HttpResponse.json("", { status: 201 })}
+    
+    return HttpResponse.json({...newNote, id: "ab34"}, { status: 201 })
+    }
+
   }),
   
   http.post('http://localhost:3000/usernames', async ({ request }) => {
 
-    const newUsername = await request.json()
- 
-    allUsernames.set(newUsername.id, newUsername)
+    const data = (await request.json()) ?? {}
+    if (typeof(data) === "object") {
+      const newUsername = {...data} 
 
-    return HttpResponse.json(newUsername, { status: 201 })
+    if (!newUsername) {return HttpResponse.json("", { status: 201 })}
+    
+    return HttpResponse.json({...newUsername, id: "ab34"}, { status: 201 })
+    }
   }),
 
   http.post('http://localhost:3000/labels', async ({ request }) => {
 
-    const newLabel = await request.json()
- 
-    allLabels.set(newLabel.id, newLabel)
+    const data = (await request.json()) ?? {}
+    if (typeof(data) === "object") {
+      const newLabel = {...data} 
 
-    return HttpResponse.json(newLabel, { status: 201 })
-  })
+    if (!newLabel) {return HttpResponse.json("", { status: 201 })}
+    
+    return HttpResponse.json({...newLabel, id: "ab34"}, { status: 201 })
+    }
+  }),
+  
 ]
 

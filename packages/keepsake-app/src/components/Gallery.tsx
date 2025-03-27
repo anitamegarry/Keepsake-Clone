@@ -74,6 +74,8 @@ export default function Gallery({
     const newNote = await response.json();
     const noteID = newNote.id;
 
+    console.log(newNote)
+
     if (noteID !== null) {
       for (const label of labels) {
         const res = await fetch(`http://localhost:3000/labels/${label.id}`);

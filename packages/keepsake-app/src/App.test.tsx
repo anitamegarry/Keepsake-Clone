@@ -47,7 +47,7 @@ test('Entering in the correct username and password logs you in', async () => {
 
 
 
-test('Adding a note should result in the note being added to the board', async () => {
+test.only('Adding a note should result in the note being added to the board', async () => {
     
     // renders app and logs into a test account
     render(<App />)

@@ -4,21 +4,18 @@ import { LabelObj } from "./Note.tsx";
 
 interface CustomLabelInputProps {
   setNoteLabels: React.Dispatch<React.SetStateAction<LabelObj[]>>;
-  username: string;
-  getUserID(username: string): Promise<any>;
+  userID: string | null;
 }
 
 export const CustomLabelInput = ({
   setNoteLabels,
-  username,
-  getUserID,
+  userID,
 }: CustomLabelInputProps) => {
   const [inputValue, setInputValue] = useState("");
   const [labels, setLabels] = useState<LabelObj[]>([]);
 
   useEffect(() => {
     const fetchLabels = async () => {
-      const userID = await getUserID(username);
       try {
         const res = await fetch(`http://localhost:3000/labels`);
         if (!res.ok) throw new Error("Failed to fetch labels");
@@ -34,12 +31,11 @@ export const CustomLabelInput = ({
     };
 
     fetchLabels();
-  }, [username]);
+  }, [userID]);
 
   const handleKeyDown = async (
     event: React.KeyboardEvent<HTMLInputElement>
   ) => {
-    const userID = await getUserID(username);
     if (event.key === "Enter" && inputValue.trim() !== "") {
       try {
         const res = await fetch(`http://localhost:3000/labels`, {

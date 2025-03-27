@@ -4,12 +4,12 @@ import Note from "./Note";
 import { CustomLabelInput } from "./CustomLabelInput";
 import { LabelObj } from "./Note.tsx";
 
-interface NoteObj {
+export interface NoteObj {
   id: string;
   title: string;
   isChecklist: boolean;
   content: string | string[];
-  labels: number[];
+  userID: string;
 }
 
 interface GalleryProps {
@@ -43,6 +43,19 @@ export default function Gallery({
   const [labels, setLabels] = useState<LabelObj[]>([]);
   const [notes, setNotes] = useState<NoteObj[]>([]);
   const [isAddingLabel, setIsAddingLabel] = useState(false);
+  const [isChecklist, setIsChecklist] = useState(false);
+  const [checklistContent, setChecklistContent] = useState<string[]>([]);
+  const [checkInput, setCheckInput] = useState("");
+  const [userID, setUserID] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUserID = async () => {
+      const id = await getUserID(username);
+      setUserID(id);
+    };
+
+    fetchUserID();
+  }, [username]);
 
   async function getNotes() {
     let response = await fetch(`http://localhost:3000/notes`);
@@ -57,6 +70,9 @@ export default function Gallery({
   async function handleAddNoteClick() {
     const userID = await getUserID(username);
 
+    let contentValue = isChecklist ? checklistContent : content;
+    console.log(contentValue);
+
     const response = await fetch(`http://localhost:3000/notes`, {
       method: "POST",
       headers: {
@@ -65,16 +81,14 @@ export default function Gallery({
       body: JSON.stringify({
         userID: userID,
         title,
-        content,
+        content: contentValue,
         category: "note",
-        isChecklist: false,
+        isChecklist: isChecklist,
       }),
     });
 
     const newNote = await response.json();
     const noteID = newNote.id;
-
-    console.log(newNote)
 
     if (noteID !== null) {
       for (const label of labels) {
@@ -82,7 +96,7 @@ export default function Gallery({
         const existingLabel = await res.json();
 
         const currentNoteIDs: string[] = existingLabel.noteIDs || [];
-        let currentUserIDs: string[] = existingLabel.userIDs || []; //might need to adjust this
+        let currentUserIDs: string[] = existingLabel.userIDs || [];
 
         if (!currentUserIDs.includes(userID)) {
           currentUserIDs = [...currentUserIDs, userID];
@@ -108,6 +122,7 @@ export default function Gallery({
     setIsAddingNote(false);
     setTitle("");
     setContent("");
+    setChecklistContent([]);
   }
 
   function handleAddLabelClick() {
@@ -118,18 +133,24 @@ export default function Gallery({
     setIsAddingLabel(false);
   }
 
+  function handleAddCheck() {
+    setChecklistContent([...checklistContent, checkInput]);
+    setCheckInput("");
+  }
+
   return (
     <div className="gallery">
-      <div className="add-new-note">
-        {isAddingNote && (
-          <div className="add-new-note">
-            <textarea
-              data-testid="title"
-              name="title"
-              id="note"
-              placeholder="Title"
-              onChange={(e) => setTitle(e.target.value)}
-            ></textarea>
+      {isAddingNote && (
+        <div className="add-new-note">
+          <textarea
+            data-testid="title"
+            name="title"
+            id="note"
+            placeholder="Title"
+            onChange={(e) => setTitle(e.target.value)}
+          ></textarea>
+
+          {!isChecklist ? (
             <textarea
               data-testid="content"
               name="content"
@@ -137,32 +158,55 @@ export default function Gallery({
               placeholder="Take a note..."
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
-            {isAddingLabel ? (
-              <>
-                <CustomLabelInput
-                  setNoteLabels={setLabels}
-                  username={username}
-                  getUserID={getUserID}
-                />{" "}
-                <button
-                  className="add-label-btn"
-                  onClick={handleConfirmLabelClick}
-                >
-                  Confirm labels
-                </button>
-              </>
-            ) : (
-              <button data-testid="add-labels" className="add-label-btn" onClick={handleAddLabelClick}>
-                Add labels
-              </button>
-            )}
+          ) : (
+            <>
+              <input
+                type="text"
+                placeholder="Enter your text"
+                value={checkInput}
+                onChange={(e) => setCheckInput(e.target.value)}
+              />
+              <button onClick={handleAddCheck}>Add</button>
+              <ul>
+                {checklistContent.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </>
+          )}
 
+          {isAddingLabel ? (
+            <>
+              <CustomLabelInput setNoteLabels={setLabels} userID={userID} />{" "}
+              <button
+                className="add-label-btn"
+                onClick={handleConfirmLabelClick}
+              >
+                Confirm labels
+              </button>
+            </>
+          ) : (
+            <button className="add-label-btn" onClick={handleAddLabelClick}>
+              Add labels
+            </button>
+          )}
+
+          <div className="add-note-foot">
             <button data-testid="submit" onClick={handleAddNoteClick}>
               Submit
             </button>
+            <div className="checkbox-status">
+              <input
+                checked={isChecklist}
+                onChange={() => setIsChecklist(!isChecklist)}
+                name="checkbox-status"
+                type="checkbox"
+              />
+              <label htmlFor="checkbox-status">check list?</label>
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
       {notes.map((note: NoteObj) => {
         return (
           <Note
@@ -170,7 +214,8 @@ export default function Gallery({
             title={note.title}
             isChecklist={note.isChecklist}
             content={note.content}
-            labels={note.labels}
+            userID={note.userID}
+            getNotes={getNotes}
           />
         );
       })}

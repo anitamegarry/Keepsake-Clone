@@ -6,7 +6,7 @@
   flex-wrap: wrap;
 }
 
-.note {
+.note, .add-new-note {
   display: flex;
   flex-wrap: wrap;
   border: 1px solid white;
@@ -16,6 +16,23 @@
   justify-content: space-around;
 }
 
+
 .note * {
   width: 100%;
 }
+
+.add-note-foot {
+  display: flex;
+  margin-bottom: 10px;
+  height: 10%;
+  align-self: flex-end;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+.add-note-foot button {
+  padding: 10px 50px 10px 50px;
+  margin-right: 10px;
+}
+

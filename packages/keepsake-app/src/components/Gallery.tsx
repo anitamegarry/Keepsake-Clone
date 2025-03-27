@@ -70,10 +70,11 @@ export default function Gallery({
         isChecklist: false,
       }),
     });
-    const new_note = await response.json();
-    setNotes([...notes, new_note]);
 
-    const noteID = new_note.id;
+    const newNote = await response.json();
+    const noteID = newNote.id;
+
+    console.log(newNote)
 
     if (noteID !== null) {
       for (const label of labels) {
@@ -103,6 +104,7 @@ export default function Gallery({
         }
       }
     }
+    setNotes([...notes, newNote]);
     setIsAddingNote(false);
     setTitle("");
     setContent("");
@@ -150,7 +152,7 @@ export default function Gallery({
                 </button>
               </>
             ) : (
-              <button className="add-label-btn" onClick={handleAddLabelClick}>
+              <button data-testid="add-labels" className="add-label-btn" onClick={handleAddLabelClick}>
                 Add labels
               </button>
             )}

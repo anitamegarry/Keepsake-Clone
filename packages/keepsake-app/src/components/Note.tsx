@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Note.css";
 import { CustomLabelInput } from "./CustomLabelInput";
 
-interface NoteProp {
+export interface NoteProp {
   id: string;
   title: string;
   isChecklist: boolean;

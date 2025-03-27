@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Note.css";
 
-interface NoteProp {
+export interface NoteProp {
   id: string;
   title: string;
   isChecklist: boolean;

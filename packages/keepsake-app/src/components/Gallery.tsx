@@ -74,6 +74,8 @@ export default function Gallery({
     const newNote = await response.json();
     const noteID = newNote.id;
 
+    console.log(newNote)
+
     if (noteID !== null) {
       for (const label of labels) {
         const res = await fetch(`http://localhost:3000/labels/${label.id}`);
@@ -150,7 +152,7 @@ export default function Gallery({
                 </button>
               </>
             ) : (
-              <button className="add-label-btn" onClick={handleAddLabelClick}>
+              <button data-testid="add-labels" className="add-label-btn" onClick={handleAddLabelClick}>
                 Add labels
               </button>
             )}

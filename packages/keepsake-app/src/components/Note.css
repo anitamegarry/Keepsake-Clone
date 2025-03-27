@@ -35,9 +35,8 @@
 .edit-note {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid white;
   margin: 10px;
   border-radius: 5px;
   width: 100%;
-  text-align: start;
+  text-align: center;
 }

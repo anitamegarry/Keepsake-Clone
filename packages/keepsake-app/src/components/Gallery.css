@@ -2,11 +2,11 @@
   display: flex;
   width: 75vw;
   height: 100%;
-  border: 1px solid white;
   flex-wrap: wrap;
 }
 
-.note, .add-new-note {
+.note,
+.add-new-note {
   display: flex;
   flex-wrap: wrap;
   border: 1px solid white;
@@ -15,7 +15,6 @@
   width: 30%;
   justify-content: space-around;
 }
-
 
 .note * {
   width: 100%;
@@ -30,9 +29,7 @@
   align-items: center;
 }
 
-
 .add-note-foot button {
   padding: 10px 50px 10px 50px;
   margin-right: 10px;
 }
-

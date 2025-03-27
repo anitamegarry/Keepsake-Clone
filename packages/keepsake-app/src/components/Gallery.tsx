@@ -4,7 +4,7 @@ import Note from "./Note";
 import { CustomLabelInput } from "./CustomLabelInput";
 import { LabelObj } from "./Note.tsx";
 
-interface NoteObj {
+export interface NoteObj {
   id: string;
   title: string;
   isChecklist: boolean;
@@ -175,6 +175,7 @@ export default function Gallery({
             isChecklist={note.isChecklist}
             content={note.content}
             userID={note.userID}
+            getNotes={getNotes}
           />
         );
       })}

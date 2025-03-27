@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Note.css";
 import { CustomLabelInput } from "./CustomLabelInput";
+import { NoteObj } from "./Gallery.tsx";
 
 interface NoteProp {
   id: string;
@@ -8,6 +9,7 @@ interface NoteProp {
   isChecklist: boolean;
   content: string | string[];
   userID: string;
+  getNotes: () => Promise<void>;
 }
 
 export interface LabelObj {
@@ -23,6 +25,7 @@ export default function Note({
   isChecklist,
   content,
   userID,
+  getNotes,
 }: NoteProp) {
   const [labelList, setLabelList] = useState<LabelObj[]>([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -47,6 +50,25 @@ export default function Note({
     setIsEditing(true);
   }
 
+  async function handleFinishEditingClick() {
+    const response = await fetch(`http://localhost:3000/notes/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: newTitle,
+        content: newContent,
+        category: "note",
+        isChecklist: false,
+      }),
+    });
+    const res = await response.json();
+    console.log(res, "<---- note patch response");
+    getNotes();
+    setIsEditing(false);
+  }
+
   return (
     <section className="note">
       {isEditing ? (
@@ -65,7 +87,9 @@ export default function Note({
             onChange={(e) => setNewContent(e.target.value)}
           ></textarea>
           <CustomLabelInput setNoteLabels={setLabelList} userID={userID} />{" "}
-          <button className="finish-editing">Finish Editing</button>
+          <button className="finish-editing" onClick={handleFinishEditingClick}>
+            Finish Editing
+          </button>
         </div>
       ) : (
         <>

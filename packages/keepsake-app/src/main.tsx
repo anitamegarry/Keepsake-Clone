@@ -14,10 +14,11 @@ async function enableMocking() {
   return worker.start()
 }
  
-await enableMocking();
-
-createRoot(document.getElementById('root')!).render(
+enableMocking().then(() => {console.log("Finished mocking")
+  createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
   </StrictMode>,
-)
+)});
+
+

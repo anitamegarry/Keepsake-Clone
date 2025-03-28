@@ -23,7 +23,15 @@ export default function Sidebar({
 }: SidebarProps) {
   return (
     <div className="sidebar">
-      <button data-testid="add-note" className="add-notes-btn" onClick={() => setIsAddingNote(true)}>
+      <button
+        data-testid="add-note"
+        className="add-notes-btn"
+        onClick={() => {
+          if (validated) {
+            setIsAddingNote(true);
+          }
+        }}
+      >
         Add Note
       </button>
       <section className="login">

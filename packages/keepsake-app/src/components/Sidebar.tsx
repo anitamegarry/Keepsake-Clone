@@ -1,6 +1,7 @@
 import "./Sidebar.css";
 import LogIn from "./LogIn";
 import Register from "./Register";
+import { useState } from "react";
 
 interface SidebarProps {
   username: string;
@@ -21,6 +22,8 @@ export default function Sidebar({
   validated,
   setValidated,
 }: SidebarProps) {
+  const [loginToggled, setLoginToggled] = useState(true);
+
   return (
     <div className="sidebar">
       <button
@@ -34,19 +37,23 @@ export default function Sidebar({
       >
         Add Note
       </button>
-      <section className="login">
-        <LogIn
-          validated={validated}
-          setValidated={setValidated}
-          username={username}
-          setUsername={setUsername}
-          password={password}
-          setPassword={setPassword}
-        />
-      </section>
-      <section className="register">
-        <Register />
-      </section>
+      {loginToggled ? (
+        <section className="login">
+          <LogIn
+            validated={validated}
+            setValidated={setValidated}
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            setLoginToggled={setLoginToggled}
+          />
+        </section>
+      ) : (
+        <section className="register">
+          <Register setLoginToggled={setLoginToggled} />
+        </section>
+      )}
     </div>
   );
 }

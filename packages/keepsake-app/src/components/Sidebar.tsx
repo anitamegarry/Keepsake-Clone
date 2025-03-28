@@ -29,7 +29,11 @@ export default function Sidebar({
       <button
         data-testid="add-note"
         className="add-notes-btn"
-        onClick={() => setIsAddingNote(true)}
+        onClick={() => {
+          if (validated) {
+            setIsAddingNote(true);
+          }
+        }}
       >
         Add Note
       </button>

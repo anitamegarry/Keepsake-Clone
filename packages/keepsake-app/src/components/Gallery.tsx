@@ -32,10 +32,10 @@ async function getUserID(username: string) {
     const users: User[] = await response.json();
 
     const user = users.find((user) => user.username === username);
-    return user ? user.id : null;
+    return user ? user.id : "";
   } catch (error) {
     console.error("Error fetching users:", error);
-    return null;
+    return "";
   }
 }
 
@@ -78,7 +78,7 @@ export default function Gallery({
 
   async function handleAddNoteClick() {
     const userID = await getUserID(username);
-    const semanticLabel = await getSemanticLabel(title, content)
+    const semanticLabel = await getSemanticLabel(title, content);
     let contentValue = isChecklist ? checklistContent : content;
     console.log(contentValue);
 
@@ -93,7 +93,7 @@ export default function Gallery({
         content: contentValue,
         category: "note",
         isChecklist: isChecklist,
-        semanticLabel
+        semanticLabel,
       }),
     });
 
@@ -182,8 +182,8 @@ export default function Gallery({
                   />
                   <button onClick={handleAddCheck}>Add</button>
                   <ul>
-                    {checklistContent.map((item) => (
-                      <li>{item}</li>
+                    {checklistContent.map((item, index) => (
+                      <li key={index}>{item}</li>
                     ))}
                   </ul>
                 </>
@@ -191,7 +191,7 @@ export default function Gallery({
 
               {isAddingLabel ? (
                 <>
-                  <CustomLabelInput setNoteLabels={setLabels} userID={userID} />{" "}
+                  <CustomLabelInput setNoteLabels={setLabels} userID={userID} />
                   <button
                     className="add-label-btn"
                     onClick={handleConfirmLabelClick}
@@ -221,22 +221,24 @@ export default function Gallery({
               </div>
             </div>
           )}
-      {notes.map((note: NoteObj) => {
-        console.log(note.semanticLabel)
-        return (
-          <Note
-            key={note.id}
-            id={note.id}
-            title={note.title}
-            isChecklist={note.isChecklist}
-            content={note.content}
-            userID={note.userID}
-            getNotes={getNotes}
-            semanticLabel={note.semanticLabel}
-          />
-        );
-      })}
 
+          {notes.map((note: NoteObj) => {
+            console.log(note.semanticLabel);
+            return (
+              <Note
+                key={note.id}
+                id={note.id}
+                title={note.title}
+                isChecklist={note.isChecklist}
+                content={note.content}
+                userID={note.userID}
+                getNotes={getNotes}
+                semanticLabel={note.semanticLabel}
+              />
+            );
+          })}
+        </>
+      )}
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function LogIn({
   const [errorMessage, setErrorMessage] = useState("");
 
   async function getUsers() {
-    let response = await fetch(`http://localhost:3000/usernames`);
+    let response = await fetch(`${import.meta.env.VITE_JSON_API_URL}/usernames`);
     let data: User[] = await response.json();
     return data;
   }

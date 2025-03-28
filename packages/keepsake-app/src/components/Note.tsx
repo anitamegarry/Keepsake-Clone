@@ -35,7 +35,7 @@ export default function Note({
   const [checkInput, setCheckInput] = useState("");
 
   async function getLabels() {
-    const response = await fetch("http://localhost:3000/labels");
+    const response = await fetch(`${import.meta.env.VITE_JSON_API_URL}/labels`);
     const allLabels = await response.json();
 
     const noteLabels = allLabels.filter((label: LabelObj) =>
@@ -60,7 +60,7 @@ export default function Note({
   }
 
   async function handleFinishEditingClick() {
-    await fetch(`http://localhost:3000/notes/${id}`, {
+    await fetch(`${import.meta.env.VITE_JSON_API_URL}/notes/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export default function Note({
       }),
     });
 
-    const allLabelsRes = await fetch("http://localhost:3000/labels");
+    const allLabelsRes = await fetch(`${import.meta.env.VITE_JSON_API_URL}/labels`);
     const allLabels: LabelObj[] = await allLabelsRes.json();
 
     for (const label of allLabels) {
@@ -82,7 +82,7 @@ export default function Note({
 
       if (isNoteLinked && !isInCurrentLabelList) {
         const updatedNoteIDs = label.noteIDs.filter((noteId) => noteId !== id);
-        await fetch(`http://localhost:3000/labels/${label.id}`, {
+        await fetch(`${import.meta.env.VITE_JSON_API_URL}/labels/${label.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -96,14 +96,14 @@ export default function Note({
 
     for (const label of labelList) {
       const existingLabelRes = await fetch(
-        `http://localhost:3000/labels/${label.id}`
+        `${import.meta.env.VITE_JSON_API_URL}/labels/${label.id}`
       );
       const existingLabel = await existingLabelRes.json();
       const currentNoteIDs: string[] = existingLabel.noteIDs || [];
 
       if (!currentNoteIDs.includes(id)) {
         const updatedNoteIDs = [...currentNoteIDs, id];
-        await fetch(`http://localhost:3000/labels/${label.id}`, {
+        await fetch(`${import.meta.env.VITE_JSON_API_URL}/labels/${label.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -185,7 +185,7 @@ export default function Note({
               />
               <button onClick={handleAddCheck}>Add</button>
               <ul>
-                {newContent.map((item: string) => (
+                {(Array.isArray(newContent) ? newContent : [newContent]).map((item: string) => (
                   <li>{item}</li>
                 ))}
               </ul>

@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw'
 
 export const handlers = [
 
-  http.get('http://localhost:3000/notes', () => {
+  http.get(`${import.meta.env.VITE_JSON_API_URL}/notes`, () => {
 
     return HttpResponse.json([{
     "noteID": 1,
@@ -88,7 +88,7 @@ export const handlers = [
   }),
 
 
-  http.get('http://localhost:3000/usernames', () => {
+  http.get(`${import.meta.env.VITE_JSON_API_URL}/usernames`, () => {
     return HttpResponse.json([
     {
       "userID": 1,
@@ -111,7 +111,7 @@ export const handlers = [
   ])
   }),
 
-  http.get('http://localhost:3000/labels', () => {
+  http.get(`${import.meta.env.VITE_JSON_API_URL}/labels`, () => {
 
     return HttpResponse.json([
     {
@@ -165,7 +165,7 @@ export const handlers = [
   ])
   }),
 
-  http.post('http://localhost:3000/notes', async ({ request }) => {
+  http.post(`${import.meta.env.VITE_JSON_API_URL}/notes`, async ({ request }) => {
 
     const data = (await request.json()) ?? {}
     if (typeof(data) === "object") {
@@ -178,7 +178,7 @@ export const handlers = [
 
   }),
   
-  http.post('http://localhost:3000/usernames', async ({ request }) => {
+  http.post(`${import.meta.env.VITE_JSON_API_URL}/usernames`, async ({ request }) => {
 
     const data = (await request.json()) ?? {}
     if (typeof(data) === "object") {
@@ -190,7 +190,7 @@ export const handlers = [
     }
   }),
 
-  http.post('http://localhost:3000/labels', async ({ request }) => {
+  http.post(`${import.meta.env.VITE_JSON_API_URL}/labels`, async ({ request }) => {
 
     const data = (await request.json()) ?? {}
     if (typeof(data) === "object") {

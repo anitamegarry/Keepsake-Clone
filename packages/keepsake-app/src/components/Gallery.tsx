@@ -28,9 +28,11 @@ interface User {
 
 async function getUserID(username: string) {
   try {
-    const response = await fetch(`${import.meta.env.VITE_JSON_API_URL}/usernames`);
+    const response = await fetch(
+      `${import.meta.env.VITE_JSON_API_URL}/usernames`
+    );
     const users = await response.json();
-    const user = users.find((user) => user.username === username);
+    const user = users.find((user: User) => user.username === username);
     return user ? user.id : "";
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -101,7 +103,9 @@ export default function Gallery({
 
     if (noteID !== null) {
       for (const label of labels) {
-        const res = await fetch(`${import.meta.env.VITE_JSON_API_URL}/labels/${label.id}`);
+        const res = await fetch(
+          `${import.meta.env.VITE_JSON_API_URL}/labels/${label.id}`
+        );
         const existingLabel = await res.json();
 
         const currentNoteIDs: string[] = existingLabel.noteIDs || [];
@@ -114,16 +118,19 @@ export default function Gallery({
         if (!currentNoteIDs.includes(noteID)) {
           const updatedNoteIDs = [...currentNoteIDs, noteID];
 
-          await fetch(`${import.meta.env.VITE_JSON_API_URL}/labels/${label.id}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              noteIDs: updatedNoteIDs,
-              userIDs: currentUserIDs,
-            }),
-          });
+          await fetch(
+            `${import.meta.env.VITE_JSON_API_URL}/labels/${label.id}`,
+            {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                noteIDs: updatedNoteIDs,
+                userIDs: currentUserIDs,
+              }),
+            }
+          );
         }
       }
     }

@@ -6,7 +6,11 @@ interface UserObj {
   id: string;
 }
 
-export default function Register() {
+interface RegisterProp {
+  setLoginToggled: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Register({ setLoginToggled }: RegisterProp) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -85,6 +89,7 @@ export default function Register() {
         />
       </div>
       <button onClick={handleSubmit}>Register</button>
+      <button onClick={() => setLoginToggled(true)}>Log In</button>
       {submitted ? <p>Signed up!</p> : <></>}
       {errorMessage ? <p className="error-message">{errorMessage}</p> : <></>}
     </div>

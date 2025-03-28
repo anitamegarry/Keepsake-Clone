@@ -25,10 +25,15 @@
     {
       "userID": "bd3d",
       "title": "Groceries",
-      "content": ["apples", "eggs", "pasta"],
+      "content": [
+        "apples",
+        "eggs",
+        "pasta"
+      ],
       "category": "shopping list",
       "isChecklist": true,
-      "id": "0202"
+      "id": "0202",
+      "semanticLabel": ""
     },
     {
       "userID": "bd3d",
@@ -36,15 +41,21 @@
       "content": "Discuss marketing strategy and finalise budget allocations.",
       "category": "work",
       "isChecklist": false,
-      "id": "5fef"
+      "id": "5fef",
+      "semanticLabel": ""
     },
     {
       "userID": "feb6",
       "title": "Home Repairs",
-      "content": ["Fix leaky tap", "Paint living room", "Replace broken tile"],
+      "content": [
+        "Fix leaky tap",
+        "Paint living room",
+        "Replace broken tile"
+      ],
       "category": "household",
       "isChecklist": true,
-      "id": "51e4"
+      "id": "51e4",
+      "semanticLabel": ""
     },
     {
       "userID": "feb6",
@@ -52,15 +63,21 @@
       "content": "Check out 'Atomic Habits' and 'Deep Work' for productivity tips.",
       "category": "personal growth",
       "isChecklist": false,
-      "id": "bf40"
+      "id": "bf40",
+      "semanticLabel": ""
     },
     {
       "userID": "feb6",
       "title": "Weekend Plans",
-      "content": ["Hiking trip", "Try new sushi place", "Movie night"],
+      "content": [
+        "Hiking trip",
+        "Try new sushi place",
+        "Movie night"
+      ],
       "category": "leisure",
       "isChecklist": true,
-      "id": "b4f8"
+      "id": "b4f8",
+      "semanticLabel": ""
     },
     {
       "userID": "feb6",
@@ -68,55 +85,110 @@
       "content": "Brainstorm app ideas for personal finance tracking.",
       "category": "work",
       "isChecklist": false,
-      "id": "8e94"
+      "id": "8e94",
+      "semanticLabel": "Shopping\n"
+    },
+    {
+      "userID": "ef3a",
+      "title": "groceries",
+      "content": "eggs",
+      "category": "note",
+      "isChecklist": false,
+      "semanticLabel": "Shopping\n",
+      "id": "5Pt2sYE"
+    },
+    {
+      "userID": "ef3a",
+      "title": "to do",
+      "content": "finish code",
+      "category": "note",
+      "isChecklist": false,
+      "semanticLabel": "Action\n",
+      "id": "UJW9XNs"
     }
   ],
   "labels": [
     {
-      "userIDs": ["d5c5"],
-      "noteIDs": ["0202", "fd14", "7022"],
+      "userIDs": [
+        "d5c5"
+      ],
+      "noteIDs": [
+        "0202",
+        "fd14",
+        "7022"
+      ],
       "labelName": "Shopping",
       "id": "8526"
     },
     {
-      "userIDs": ["feb6"],
-      "noteIDs": ["0202"],
+      "userIDs": [
+        "feb6"
+      ],
+      "noteIDs": [
+        "0202"
+      ],
       "labelName": "Work",
       "id": "89f4"
     },
     {
-      "userIDs": ["feb6"],
-      "noteIDs": [""],
+      "userIDs": [
+        "feb6"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Budgeting",
       "id": "bcff"
     },
     {
-      "userIDs": ["feb6"],
-      "noteIDs": [""],
+      "userIDs": [
+        "feb6"
+      ],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Household",
       "id": "70d6"
     },
     {
-      "userIDs": ["d5c5"],
-      "noteIDs": ["5fef", "dd22", "d397"],
+      "userIDs": [
+        "d5c5"
+      ],
+      "noteIDs": [
+        "5fef",
+        "dd22",
+        "d397"
+      ],
       "labelName": "Books",
       "id": "e7c6"
     },
     {
-      "userIDs": ["d5c5", "feb6"],
-      "noteIDs": ["5fef", "ac2b", "fd14", "7022"],
+      "userIDs": [
+        "d5c5",
+        "feb6"
+      ],
+      "noteIDs": [
+        "5fef",
+        "ac2b",
+        "fd14",
+        "7022"
+      ],
       "labelName": "Productivity",
       "id": "1da0"
     },
     {
       "userIDs": [],
-      "noteIDs": [""],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Leisure",
       "id": "6b14"
     },
     {
       "userIDs": [],
-      "noteIDs": [""],
+      "noteIDs": [
+        ""
+      ],
       "labelName": "Finance",
       "id": "8bbe"
     }

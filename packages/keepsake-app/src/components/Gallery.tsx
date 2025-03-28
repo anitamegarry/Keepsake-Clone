@@ -3,6 +3,7 @@ import "./Gallery.css";
 import Note from "./Note";
 import { CustomLabelInput } from "./Labels.tsx";
 import { LabelObj } from "./Note.tsx";
+import { getSemanticLabel } from "./SemanticLabel.tsx";
 
 export interface NoteObj {
   id: string;
@@ -10,10 +11,12 @@ export interface NoteObj {
   isChecklist: boolean;
   content: string | string[];
   userID: string;
+  semanticLabel: string;
 }
 
 interface GalleryProps {
   username: string;
+  validated: boolean;
   isAddingNote: boolean;
   setIsAddingNote: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -27,17 +30,17 @@ async function getUserID(username: string) {
   try {
     const response = await fetch(`${import.meta.env.VITE_JSON_API_URL}/usernames`);
     const users = await response.json();
-
-    const user = users.find((user: User) => user.username === username);
-    return user ? user.id : null;
+    const user = users.find((user) => user.username === username);
+    return user ? user.id : "";
   } catch (error) {
     console.error("Error fetching users:", error);
-    return null;
+    return "";
   }
 }
 
 export default function Gallery({
   username,
+  validated,
   isAddingNote,
   setIsAddingNote,
 }: GalleryProps) {
@@ -73,6 +76,8 @@ export default function Gallery({
   }, []);
 
   async function handleAddNoteClick() {
+    const userID = await getUserID(username);
+    const semanticLabel = await getSemanticLabel(title, content);
     let contentValue = isChecklist ? checklistContent : content;
     console.log(contentValue);
 
@@ -87,6 +92,7 @@ export default function Gallery({
         content: contentValue,
         category: "note",
         isChecklist: isChecklist,
+        semanticLabel,
       }),
     });
 
@@ -143,86 +149,95 @@ export default function Gallery({
 
   return (
     <div className="gallery">
-      {isAddingNote && (
-        <div className="add-new-note">
-          <textarea
-            data-testid="title"
-            name="title"
-            id="note"
-            placeholder="Title"
-            onChange={(e) => setTitle(e.target.value)}
-          ></textarea>
+      {!validated ? (
+        <h1>Please sign in to view your notes</h1>
+      ) : (
+        <>
+          {isAddingNote && (
+            <div className="add-new-note">
+              <textarea
+                data-testid="title"
+                name="title"
+                id="note"
+                placeholder="Title"
+                onChange={(e) => setTitle(e.target.value)}
+              ></textarea>
 
-          {!isChecklist ? (
-            <textarea
-              data-testid="content"
-              name="content"
-              id="note"
-              placeholder="Take a note..."
-              onChange={(e) => setContent(e.target.value)}
-            ></textarea>
-          ) : (
-            <>
-              <input
-                type="text"
-                placeholder="Enter your text"
-                value={checkInput}
-                onChange={(e) => setCheckInput(e.target.value)}
-              />
-              <button onClick={handleAddCheck}>Add</button>
-              <ul>
-                {checklistContent.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            </>
-          )}
+              {!isChecklist ? (
+                <textarea
+                  data-testid="content"
+                  name="content"
+                  id="note"
+                  placeholder="Take a note..."
+                  onChange={(e) => setContent(e.target.value)}
+                ></textarea>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    placeholder="Enter your text"
+                    value={checkInput}
+                    onChange={(e) => setCheckInput(e.target.value)}
+                  />
+                  <button onClick={handleAddCheck}>Add</button>
+                  <ul>
+                    {checklistContent.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
 
-          {isAddingLabel ? (
-            <>
-              <CustomLabelInput setNoteLabels={setLabels} userID={userID} />{" "}
-              <button
-                className="add-label-btn"
-                onClick={handleConfirmLabelClick}
-              >
-                Confirm labels
-              </button>
-            </>
-          ) : (
-            <button className="add-label-btn" onClick={handleAddLabelClick}>
-              Add labels
-            </button>
-          )}
+              {isAddingLabel ? (
+                <>
+                  <CustomLabelInput setNoteLabels={setLabels} userID={userID} />
+                  <button
+                    className="add-label-btn"
+                    onClick={handleConfirmLabelClick}
+                  >
+                    Confirm labels
+                  </button>
+                </>
+              ) : (
+                <button className="add-label-btn" onClick={handleAddLabelClick}>
+                  Add labels
+                </button>
+              )}
 
-          <div className="add-note-foot">
-            <button data-testid="submit" onClick={handleAddNoteClick}>
-              Submit
-            </button>
-            <div className="checkbox-status">
-              <input
-                checked={isChecklist}
-                onChange={() => setIsChecklist(!isChecklist)}
-                name="checkbox-status"
-                type="checkbox"
-              />
-              <label htmlFor="checkbox-status">check list?</label>
+              <div className="add-note-foot">
+                <button data-testid="submit" onClick={handleAddNoteClick}>
+                  Submit
+                </button>
+                <div className="checkbox-status">
+                  <input
+                    checked={isChecklist}
+                    onChange={() => setIsChecklist(!isChecklist)}
+                    name="checkbox-status"
+                    type="checkbox"
+                  />
+                  <label htmlFor="checkbox-status">check list?</label>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          )}
+
+          {notes.map((note: NoteObj) => {
+            console.log(note.semanticLabel);
+            return (
+              <Note
+                key={note.id}
+                id={note.id}
+                title={note.title}
+                isChecklist={note.isChecklist}
+                content={note.content}
+                userID={note.userID}
+                getNotes={getNotes}
+                semanticLabel={note.semanticLabel}
+              />
+            );
+          })}
+        </>
       )}
-      {notes.map((note: NoteObj) => {
-        return (
-          <Note
-            key={note.id}
-            id={note.id}
-            title={note.title}
-            isChecklist={note.isChecklist}
-            content={note.content}
-            userID={note.userID}
-            getNotes={getNotes}
-          />
-        );
-      })}
     </div>
   );
 }

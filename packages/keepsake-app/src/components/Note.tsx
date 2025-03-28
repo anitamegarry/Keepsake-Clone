@@ -9,6 +9,7 @@ export interface NoteProp {
   content: string | string[];
   userID: string;
   getNotes: () => Promise<void>;
+  semanticLabel: string;
 }
 
 export interface LabelObj {
@@ -25,6 +26,7 @@ export default function Note({
   content,
   userID,
   getNotes,
+  semanticLabel
 }: NoteProp) {
   const [labelList, setLabelList] = useState<LabelObj[]>([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -223,7 +225,7 @@ export default function Note({
               <button onClick={handleDeleteClick}>Delete</button>
               <button onClick={handleEditClick}>Edit</button>
             </div>
-            <p>semantic label</p>
+            <p>{semanticLabel}</p>
           </div>
         </>
       )}

@@ -4,8 +4,8 @@
   "description": "Keepsake",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "concurrently \"npm start --workspace=server\"  \"npm run dev --workspace=keepsake-app\""
+    "test": "vitest",
+    "dev": "concurrently \"npm start --workspace=server\"  \"npm run dev --workspace=keepsake-app\""
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,10 @@
     "packages/keepsake-app"
   ],
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "concurrently": "^9.1.2",
+    "jsdom": "^26.0.0",
+    "vitest": "^3.0.9"
   }
 }

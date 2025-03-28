@@ -3,6 +3,7 @@ import "./Gallery.css";
 import Note from "./Note";
 import { CustomLabelInput } from "./Labels.tsx";
 import { LabelObj } from "./Note.tsx";
+import { getSemanticLabel } from "./SemanticLabel.tsx";
 
 export interface NoteObj {
   id: string;
@@ -10,6 +11,7 @@ export interface NoteObj {
   isChecklist: boolean;
   content: string | string[];
   userID: string;
+  semanticLabel: string;
 }
 
 interface GalleryProps {
@@ -75,6 +77,8 @@ export default function Gallery({
   }, []);
 
   async function handleAddNoteClick() {
+    const userID = await getUserID(username);
+    const semanticLabel = await getSemanticLabel(title, content)
     let contentValue = isChecklist ? checklistContent : content;
     console.log(contentValue);
 
@@ -89,6 +93,7 @@ export default function Gallery({
         content: contentValue,
         category: "note",
         isChecklist: isChecklist,
+        semanticLabel
       }),
     });
 
@@ -216,21 +221,22 @@ export default function Gallery({
               </div>
             </div>
           )}
-          {notes
-            .filter((note) => note.userID === userID)
-            .map((note) => (
-              <Note
-                key={note.id}
-                id={note.id}
-                title={note.title}
-                isChecklist={note.isChecklist}
-                content={note.content}
-                userID={note.userID}
-                getNotes={getNotes}
-              />
-            ))}
-        </>
-      )}
+      {notes.map((note: NoteObj) => {
+        console.log(note.semanticLabel)
+        return (
+          <Note
+            key={note.id}
+            id={note.id}
+            title={note.title}
+            isChecklist={note.isChecklist}
+            content={note.content}
+            userID={note.userID}
+            getNotes={getNotes}
+            semanticLabel={note.semanticLabel}
+          />
+        );
+      })}
+
     </div>
   );
 }
